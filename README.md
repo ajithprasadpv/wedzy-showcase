@@ -9,6 +9,17 @@
 
 **A comprehensive wedding planning app for Android that helps engaged couples plan, organize, and execute their special day — all in one place.**
 
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.ajith.wedzy)
+
+</div>
+
+---
+
+## Screenshots
+
+<div align="center">
+<!-- Screenshots coming soon -->
+<p><i>Screenshots will be added here soon.</i></p>
 </div>
 
 ---
@@ -103,5 +114,8 @@ For collaboration or code review inquiries, please reach out directly.
 ## Developer
 
 **Ajith Prasad PV**  
-Android Developer  
-[GitHub](https://github.com/ajithprasadpv)
+Android Developer
+
+[![Email](https://img.shields.io/badge/Email-ajithprasadpv%40gmail.com-D14836?logo=gmail&logoColor=white)](mailto:ajithprasadpv@gmail.com)
+[![X](https://img.shields.io/badge/X-%40ajithprasad-000000?logo=x&logoColor=white)](https://x.com/ajithprasad)
+[![GitHub](https://img.shields.io/badge/GitHub-ajithprasadpv-181717?logo=github&logoColor=white)](https://github.com/ajithprasadpv)
