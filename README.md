@@ -9,6 +9,7 @@
 
 **A comprehensive wedding planning app for Android that helps engaged couples plan, organize, and execute their special day — all in one place.**
 
+[![Website](https://img.shields.io/badge/Website-wedzy.online-e8618c)](https://wedzy.online)
 [![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.ajith.wedzy)
 
 </div>
@@ -28,6 +29,8 @@
 ## Overview
 
 Wedzy is a full-featured wedding planner app built for Android using Kotlin and Jetpack Compose. It provides complete user data isolation, secure Firebase authentication, and an intuitive UI to manage every aspect of a wedding.
+
+Live website: https://wedzy.online
 
 ---
 
