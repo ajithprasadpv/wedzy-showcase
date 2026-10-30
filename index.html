@@ -3,834 +3,373 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="referrer" content="no-referrer-when-downgrade"/>
-<title>Wedzy — Where Weddings Get Organized</title>
-<meta name="description" content="The all-in-one wedding planning app. Guests, budget, vendors, checklist — beautifully organized."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --rose:#e8618c; --rose-soft:#fde0eb; --lav:#c49be8; --lav-deep:#9b6cbf;
-  --gold:#d4af6a; --cream:#fdf6f0; --dark:#1a1118; --mid:#5c4a58; --muted:#9b8796;
-  --grad:linear-gradient(135deg,#e8618c,#c49be8);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;font-size:16px;}
-body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--cream);overflow-x:hidden;}
-
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 6%;
-  background:rgba(253,246,240,0.9);
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(232,97,140,0.1);
-  transition:box-shadow .3s;
-}
-nav.up{box-shadow:0 4px 28px rgba(0,0,0,0.07);}
-.logo{font-family:'Great Vibes',cursive;font-size:2rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
-.nav-links a{font-size:.85rem;font-weight:500;color:var(--mid);text-decoration:none;transition:color .2s;}
-.nav-links a:hover{color:var(--rose);}
-.nav-btn{background:var(--grad)!important;color:#fff!important;padding:.48rem 1.2rem!important;border-radius:50px!important;box-shadow:0 4px 16px rgba(232,97,140,.28);}
-.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
-.burger span{display:block;width:22px;height:2px;background:var(--mid);border-radius:2px;transition:all .3s;}
-
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  background:linear-gradient(135deg,#fde8f0 0%,#f4d4f0 45%,#dcc8f8 100%);
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;
-  padding:7rem 6% 5rem;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse at 75% 40%,rgba(196,155,232,.2) 0%,transparent 55%),
-    radial-gradient(ellipse at 15% 85%,rgba(232,97,140,.15) 0%,transparent 48%);
-}
-.orb{position:absolute;border-radius:50%;pointer-events:none;}
-.o1{width:420px;height:420px;right:-80px;top:-80px;background:radial-gradient(circle,rgba(196,155,232,.3),transparent 70%);animation:ob 9s ease-in-out infinite;}
-.o2{width:300px;height:300px;left:-60px;bottom:8%;background:radial-gradient(circle,rgba(232,97,140,.22),transparent 70%);animation:ob 7s 3s ease-in-out infinite;}
-@keyframes ob{0%,100%{transform:translateY(0);}50%{transform:translateY(-24px);}}
-.sp{position:absolute;pointer-events:none;animation:sk 3s ease-in-out infinite;}
-.sp::before{content:'✦';font-size:var(--sz,.7rem);color:var(--c,rgba(232,97,140,.5));}
-.sp1{top:15%;left:12%;--sz:.6rem;--c:rgba(232,97,140,.5);animation-delay:0s;}
-.sp2{top:25%;right:30%;--sz:.45rem;--c:rgba(196,155,232,.7);animation-delay:.7s;}
-.sp3{top:62%;left:40%;--sz:.7rem;--c:rgba(212,175,106,.55);animation-delay:1.4s;}
-.sp4{bottom:30%;right:12%;--sz:.5rem;--c:rgba(232,97,140,.38);animation-delay:2s;}
-@keyframes sk{0%,100%{opacity:.25;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.5) rotate(25deg);}}
-
-.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;width:100%;max-width:1240px;margin:0 auto;}
-.eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);background:rgba(232,97,140,.08);border:1px solid rgba(232,97,140,.18);padding:.3rem .85rem;border-radius:50px;margin-bottom:1.2rem;}
-.eyebrow::before{content:'💍';font-size:.82rem;}
-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,5rem);font-weight:300;line-height:1.1;margin-bottom:1.1rem;}
-h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400;}
-.hero-sub{font-size:1rem;font-weight:300;color:var(--mid);line-height:1.75;margin-bottom:2rem;max-width:450px;}
-.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-.btn-p{display:inline-flex;align-items:center;gap:.5rem;background:var(--grad);color:#fff;padding:.82rem 1.8rem;border-radius:50px;font-weight:500;font-size:.9rem;text-decoration:none;box-shadow:0 6px 26px rgba(232,97,140,.36);transition:transform .2s,box-shadow .2s;}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(232,97,140,.46);}
-.btn-o{display:inline-flex;align-items:center;gap:.4rem;color:var(--mid);border:1.5px solid rgba(92,74,88,.2);padding:.82rem 1.8rem;border-radius:50px;font-weight:500;font-size:.9rem;text-decoration:none;background:rgba(255,255,255,.6);transition:all .2s;}
-.btn-o:hover{border-color:var(--rose);color:var(--rose);}
-.hstats{display:flex;gap:1.8rem;align-items:center;flex-wrap:wrap;}
-.hs{display:flex;flex-direction:column;}
-.hs-n{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;line-height:1;}
-.hs-l{font-size:.68rem;color:var(--muted);letter-spacing:.04em;margin-top:.12rem;}
-.hsep{width:1px;height:32px;background:rgba(92,74,88,.13);}
-
-/* Phone mockup */
-.hero-right{display:flex;justify-content:center;align-items:center;}
-.phone-wrap{position:relative;width:280px;height:540px;}
-.pcard{position:absolute;border-radius:34px;overflow:hidden;box-shadow:0 26px 68px rgba(60,20,50,.2);}
-.pm{width:220px;height:460px;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;animation:pf 6s ease-in-out infinite;z-index:3;}
-.pb1{width:198px;height:410px;right:-8px;top:26px;transform:rotate(9deg);background:linear-gradient(145deg,#fde8f0,#f0d0f0);opacity:.68;z-index:2;animation:pf1 6s 1s ease-in-out infinite;}
-.pb2{width:188px;height:400px;left:-8px;top:48px;transform:rotate(-8deg);background:linear-gradient(145deg,#dcc8f8,#c8d8ff);opacity:.58;z-index:1;animation:pf2 6s 2s ease-in-out infinite;}
-@keyframes pf{0%,100%{transform:translate(-50%,-50%) translateY(0);}50%{transform:translate(-50%,-50%) translateY(-11px);}}
-@keyframes pf1{0%,100%{transform:rotate(9deg) translateY(0);}50%{transform:rotate(9deg) translateY(-9px);}}
-@keyframes pf2{0%,100%{transform:rotate(-8deg) translateY(0);}50%{transform:rotate(-8deg) translateY(-7px);}}
-.pscreen{position:absolute;inset:0;border-radius:34px;overflow:hidden;display:flex;flex-direction:column;}
-.pnotch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:65px;height:18px;background:#fff;border-radius:0 0 12px 12px;z-index:5;}
-.pstatus{height:24px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;}
-.pst{font-size:.58rem;font-weight:600;}
-.pbody{flex:1;background:#fdf5f8;padding:9px;overflow:hidden;}
-.pcouple{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;}
-.pdate{font-size:.5rem;color:var(--muted);margin-bottom:8px;}
-.pcd{background:var(--grad);border-radius:12px;padding:9px;margin-bottom:9px;}
-.pcd-lbl{font-size:.44rem;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;}
-.pcd-nums{display:flex;justify-content:center;gap:7px;}
-.pcu{display:flex;flex-direction:column;align-items:center;}
-.pcn{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:#fff;line-height:1;}
-.pcl{font-size:.38rem;color:rgba(255,255,255,.68);}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
-.pmini{background:#fff;border-radius:9px;padding:7px;}
-.pmini-l{font-size:.42rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;}
-.pmini-v{font-family:'Cormorant Garamond',serif;font-size:.92rem;font-weight:600;color:var(--rose);}
-.pmini-s{font-size:.4rem;color:var(--muted);}
-
-/* ── TRUST ── */
-.trust{background:#fff;padding:1.2rem 6%;display:flex;align-items:center;justify-content:center;gap:2.2rem;flex-wrap:wrap;border-bottom:1px solid rgba(232,97,140,.08);}
-.ti{display:flex;align-items:center;gap:.45rem;font-size:.78rem;color:var(--mid);font-weight:500;}
-
-/* ── SECTIONS ── */
-section{padding:6rem 6%;}
-.s-eye{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:.8rem;}
-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.6vw,3.2rem);font-weight:300;line-height:1.2;margin-bottom:1rem;}
-h2 em{font-style:italic;color:var(--rose);}
-.lead{font-size:.96rem;color:var(--mid);line-height:1.72;max-width:560px;}
-.tc{text-align:center;}.tc .lead{margin:0 auto;}
-.mw{max-width:1240px;margin:0 auto;}
-
-/* ── FEATURES ── */
-.features{background:#fff;}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3.2rem;}
-.fc{border:1px solid rgba(232,97,140,.1);border-radius:20px;padding:1.8rem;background:linear-gradient(155deg,#fff,#fdf5f8);transition:transform .3s,box-shadow .3s,border-color .3s;}
-.fc:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(232,97,140,.12);border-color:rgba(232,97,140,.25);}
-.fc-ico{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--rose-soft),rgba(196,155,232,.16));display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1rem;}
-.fc-t{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:.5rem;}
-.fc-d{font-size:.83rem;color:var(--muted);line-height:1.65;}
-.pills{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:1rem;}
-.pill{font-size:.6rem;padding:.2rem .6rem;border-radius:50px;background:rgba(232,97,140,.07);color:var(--rose);border:1px solid rgba(232,97,140,.13);}
-
-/* ── MARKET ── */
-.market{background:var(--dark);position:relative;overflow:hidden;}
-.market::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 78% 15%,rgba(196,155,232,.13) 0%,transparent 52%),radial-gradient(ellipse at 10% 85%,rgba(232,97,140,.1) 0%,transparent 48%);}
-.market-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;}
-.market .s-eye{color:var(--lav);}
-.market h2{color:#fff;}
-.market .lead{color:rgba(255,255,255,.56);}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-.mc{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:1.5rem;transition:background .3s;}
-.mc:hover{background:rgba(255,255,255,.09);}
-.mc-n{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem;}
-.mc-l{font-size:.74rem;color:rgba(255,255,255,.46);line-height:1.4;}
-.mc-s{font-size:.62rem;color:rgba(255,255,255,.26);margin-top:.25rem;}
-
-/* ── SCREENS CAROUSEL ── */
-.screens{background:#fff;overflow:hidden;}
-.carousel{display:flex;gap:1.3rem;animation:slide 30s linear infinite;width:max-content;margin-top:3rem;}
-.carousel:hover{animation-play-state:paused;}
-@keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.scard{width:185px;flex-shrink:0;background:linear-gradient(145deg,#fde8f0,#f2d8f8);border-radius:24px;padding:.9rem;box-shadow:0 12px 34px rgba(232,97,140,.12);}
-.scard-lbl{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:.65rem;}
-.smock{background:#fff;border-radius:15px;height:275px;overflow:hidden;padding:9px;display:flex;flex-direction:column;gap:6px;}
-.sm-t{font-family:'Cormorant Garamond',serif;font-size:.82rem;font-weight:600;color:var(--dark);}
-.sm-box{background:var(--grad);border-radius:9px;padding:8px;}
-.sm-box-lbl{font-size:.41rem;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.07em;}
-.sm-box-v{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:#fff;}
-.sm-box-s{font-size:.38rem;color:rgba(255,255,255,.65);}
-.sm-g2{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
-.sm-m{background:#fdf5f8;border-radius:7px;padding:5px;}
-.sm-ml{font-size:.38rem;color:var(--muted);text-transform:uppercase;}
-.sm-mv{font-family:'Cormorant Garamond',serif;font-size:.82rem;font-weight:600;color:var(--rose);}
-.sm-ms{font-size:.36rem;color:var(--muted);}
-.sm-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #f8f2f5;}
-.sm-rl{font-size:.52rem;color:var(--mid);}
-.sm-rv{font-size:.56rem;font-weight:600;color:var(--rose);}
-.chip{font-size:.42rem;padding:2px 5px;border-radius:50px;}
-.cg{background:rgba(80,190,80,.1);color:#2a8a2a;}
-.cy{background:rgba(220,160,0,.1);color:#8a6200;}
-.cr{background:rgba(232,97,140,.1);color:var(--rose);}
-.sm-bar{height:4px;border-radius:2px;background:var(--rose-soft);}
-.sm-bf{height:100%;background:var(--grad);border-radius:2px;}
-.sm-av{display:flex;align-items:center;gap:4px;padding:3px 0;border-bottom:1px solid #f8f2f5;}
-.sm-ava{width:18px;height:18px;border-radius:50%;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;font-size:.44rem;color:var(--rose);font-weight:700;}
-.sm-an{font-size:.52rem;color:var(--mid);flex:1;}
-.sm-vnd{background:#fdf5f8;border-radius:7px;padding:5px;margin-bottom:3px;}
-.sm-vn{font-size:.58rem;font-weight:600;color:var(--dark);}
-.sm-vc{font-size:.44rem;color:var(--muted);}
-.sm-vp{font-size:.52rem;color:var(--rose);font-weight:600;}
-
-/* ── TECH ── */
-.tech{background:var(--cream);}
-.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.2rem;}
-.tcc{background:#fff;border-radius:16px;padding:1.4rem;border:1px solid rgba(232,97,140,.09);transition:transform .3s,box-shadow .3s;}
-.tcc:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(232,97,140,.09);}
-.tcc-l{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:var(--rose);font-weight:700;margin-bottom:.6rem;}
-.tcc-n{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:.3rem;}
-.tcc-d{font-size:.74rem;color:var(--muted);line-height:1.55;}
-.arch{margin-top:3rem;background:#fff;border-radius:20px;padding:2rem;border:1px solid rgba(232,97,140,.09);}
-.arch-t{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;text-align:center;margin-bottom:1.5rem;}
-.arch-layers{display:flex;flex-direction:column;gap:.75rem;}
-.al{display:flex;align-items:center;gap:1.2rem;border-radius:11px;padding:.9rem 1.3rem;border-left:3px solid var(--rose);background:linear-gradient(90deg,rgba(253,224,235,.45),transparent);}
-.al.v{border-left-color:var(--lav);background:linear-gradient(90deg,rgba(196,155,232,.11),transparent);}
-.al.g{border-left-color:var(--gold);background:linear-gradient(90deg,rgba(212,175,106,.11),transparent);}
-.al-nm{font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--mid);min-width:90px;flex-shrink:0;}
-.al-items{display:flex;gap:.45rem;flex-wrap:wrap;}
-.al-i{font-size:.68rem;padding:.22rem .68rem;border-radius:50px;background:#fff;color:var(--mid);border:1px solid rgba(92,74,88,.12);box-shadow:0 1px 4px rgba(0,0,0,.04);}
-
-/* ── ROADMAP ── */
-.roadmap{background:var(--cream);}
-.rm-inner{max-width:820px;margin:0 auto;}
-.rm-line{position:relative;margin-top:3.5rem;}
-/* Vertical rule — desktop: center, mobile: left */
-.rm-line::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--rose),var(--lav));transform:translateX(-50%);}
-/* Phase row: 3-column grid */
-.ph{display:grid;grid-template-columns:1fr 52px 1fr;align-items:flex-start;margin-bottom:2.8rem;}
-.ph-l{padding-right:2rem;text-align:right;}
-.ph-r{padding-left:2rem;text-align:left;}
-.ph-dot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;z-index:2;position:relative;justify-self:center;margin-top:2px;flex-shrink:0;}
-.dd{background:var(--grad);box-shadow:0 0 0 5px var(--cream);}
-.dc{background:#fff;border:3px solid var(--rose);box-shadow:0 0 0 5px var(--cream);animation:pu 2s ease-in-out infinite;}
-.df{background:rgba(196,155,232,.16);border:2px solid var(--lav);box-shadow:0 0 0 5px var(--cream);}
-@keyframes pu{0%,100%{box-shadow:0 0 0 5px var(--cream),0 0 0 9px rgba(232,97,140,.18);}50%{box-shadow:0 0 0 5px var(--cream),0 0 0 17px rgba(232,97,140,.07);}}
-.ph-badge{display:inline-flex;align-items:center;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.18rem .6rem;border-radius:50px;margin-bottom:.4rem;white-space:nowrap;}
-.bd{background:rgba(232,97,140,.09);color:var(--rose);}
-.bc{background:rgba(212,175,106,.14);color:var(--gold);}
-.bf{background:rgba(196,155,232,.14);color:var(--lav-deep);}
-.bv{background:rgba(212,175,106,.2);color:#b8860b;border:1px solid rgba(212,175,106,.3);}
-
-/* ── VIDEO ── */
-.video-sec{background:var(--dark);padding:6rem 6%;position:relative;overflow:hidden;}
-.video-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(232,97,140,.12) 0%,transparent 55%),radial-gradient(ellipse at 50% 0%,rgba(196,155,232,.08) 0%,transparent 50%);}
-.video-sec .mw{position:relative;z-index:2;}
-.video-sec .s-eye{color:var(--lav);}
-.video-sec h2{color:#fff;}
-.video-sec .lead{color:rgba(255,255,255,.55);}
-.video-wrap{margin-top:3rem;position:relative;}
-.video-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;height:80%;background:radial-gradient(ellipse,rgba(232,97,140,.18),transparent 65%);filter:blur(50px);pointer-events:none;z-index:0;}
-.video-container{position:relative;z-index:1;border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);aspect-ratio:16/9;background:#000;cursor:pointer;}
-.vthumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s,filter .4s;filter:brightness(.7);}
-.video-container:hover .vthumb{transform:scale(1.04);filter:brightness(.35);}
-.voverlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;}
-.vplay{width:80px;height:80px;border-radius:50%;background:rgba(255,0,0,.9);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 32px rgba(255,0,0,.5);transition:transform .3s,box-shadow .3s;}
-.video-container:hover .vplay{transform:scale(1.15);box-shadow:0 10px 48px rgba(255,0,0,.7);}
-.vtext{font-size:1.1rem;font-weight:600;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.8);letter-spacing:.02em;}
-.vsub{font-size:.75rem;color:rgba(255,255,255,.6);text-shadow:0 2px 8px rgba(0,0,0,.8);}
-.video-pills{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;margin-top:1.8rem;}
-.vpill{font-size:.72rem;font-weight:500;padding:.35rem .9rem;border-radius:50px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1);}
-
-/* ── FREE TRIAL ── */
-.freetrial{background:var(--dark);position:relative;overflow:hidden;}
-.freetrial::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(232,97,140,.12) 0%,transparent 55%),radial-gradient(ellipse at 80% 50%,rgba(196,155,232,.1) 0%,transparent 52%);}
-.ft-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.ft-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:24px;overflow:hidden;backdrop-filter:blur(12px);}
-.ft-card-top{background:var(--grad);padding:2rem;text-align:center;}
-.ft-badge{display:inline-block;background:rgba(255,255,255,.2);color:#fff;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.3rem .9rem;border-radius:50px;margin-bottom:1rem;}
-.ft-price{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:#fff;line-height:1;}
-.ft-sub{font-size:.78rem;color:rgba(255,255,255,.75);margin-top:.4rem;}
-.ft-features{padding:1.6rem 2rem;}
-.ft-f{font-size:.82rem;color:rgba(255,255,255,.65);padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem;}
-.ft-f:last-child{border-bottom:none;}
-.ft-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;margin:0 2rem 2rem;background:var(--grad);color:#fff;padding:.9rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;box-shadow:0 6px 24px rgba(232,97,140,.4);transition:transform .2s,box-shadow .2s;}
-.ft-cta:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(232,97,140,.5);}
-.ph-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;margin-bottom:.4rem;line-height:1.28;}
-.ph-desc{font-size:.78rem;color:var(--mid);line-height:1.62;}
-.ph-gap{/* empty cell */}
-
-/* ── PRICING ── */
-.pricing{background:#fff;}
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:3.2rem;}
-.pc{border-radius:20px;padding:1.8rem;border:1px solid rgba(232,97,140,.1);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;}
-.pc:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(232,97,140,.1);}
-.pc.ft{background:var(--dark);border-color:transparent;}
-.pc.ft .pc-plan,.pc.ft .pc-period{color:rgba(255,255,255,.5);}
-.pc.ft .pc-price{color:#fff;}
-.pc.ft .pc-f{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.07);}
-.pc.ft .pc-f::before{color:var(--lav);}
-.pc-badge{position:absolute;top:1rem;right:1rem;background:var(--grad);color:#fff;font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:.2rem .62rem;border-radius:50px;}
-.pc-plan{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin-bottom:.65rem;}
-.pc-price{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;line-height:1;margin-bottom:.22rem;}
-.pc-price span{font-size:.95rem;font-weight:400;vertical-align:super;font-family:'DM Sans',sans-serif;}
-.pc-period{font-size:.72rem;color:var(--muted);margin-bottom:1.2rem;}
-.pc-div{height:1px;background:rgba(232,97,140,.09);margin:.9rem 0;}
-.pc-f{font-size:.78rem;color:var(--mid);padding:.42rem 0;border-bottom:1px solid rgba(232,97,140,.07);display:flex;align-items:center;gap:.42rem;}
-.pc-f::before{content:'✓';color:var(--rose);font-weight:700;flex-shrink:0;}
-.pc-cta{display:block;text-align:center;margin-top:1.3rem;padding:.68rem;border-radius:50px;font-size:.82rem;font-weight:500;text-decoration:none;transition:all .2s;}
-.pc-cta.o{border:1.5px solid rgba(232,97,140,.26);color:var(--rose);}
-.pc-cta.o:hover{background:rgba(232,97,140,.05);}
-.pc-cta.f{background:var(--grad);color:#fff;box-shadow:0 4px 16px rgba(232,97,140,.26);}
-.pc-cta.f:hover{opacity:.88;}
-
-/* ── CTA ── */
-.cta{background:var(--dark);text-align:center;position:relative;overflow:hidden;}
-.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(232,97,140,.16) 0%,transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(196,155,232,.1) 0%,transparent 48%);}
-.cta-in{position:relative;z-index:2;max-width:640px;margin:0 auto;}
-.cta .s-eye{color:rgba(253,224,235,.8);}
-.cta h2{color:#fff;}
-.cta .lead{color:rgba(255,255,255,.55);margin:0 auto 2.2rem;}
-.cta-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;}
-.btn-gh{border:1.5px solid rgba(255,255,255,.2);color:#fff;padding:.82rem 1.8rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:.42rem;transition:all .2s;}
-.btn-gh:hover{border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.06);}
-
-/* ── FOOTER ── */
-footer{background:#120d10;padding:2.8rem 6% 1.8rem;color:rgba(255,255,255,.36);}
-.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;max-width:1240px;margin:0 auto;padding-bottom:1.8rem;border-bottom:1px solid rgba(255,255,255,.05);}
-.fb .logo-f{font-family:'Great Vibes',cursive;font-size:1.8rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;}
-.fb p{font-size:.78rem;line-height:1.6;margin-top:.7rem;max-width:260px;}
-.fcol h4{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.62);margin-bottom:.8rem;font-weight:700;}
-.fcol a{display:block;font-size:.78rem;color:rgba(255,255,255,.36);text-decoration:none;margin-bottom:.42rem;transition:color .2s;}
-.fcol a:hover{color:var(--rose);}
-.fbtm{display:flex;justify-content:space-between;align-items:center;padding-top:1.3rem;max-width:1240px;margin:0 auto;flex-wrap:wrap;gap:.7rem;font-size:.72rem;}
-.fbtm a{color:var(--rose);text-decoration:none;}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .feat-grid,.tech-grid{grid-template-columns:repeat(2,1fr);}
-  .hero-inner,.market-in,.ft-inner{grid-template-columns:1fr;}
-  .hero-right{display:none;}
-  .hero-btns,.hstats{justify-content:center;}
-  .hero-sub{margin-left:auto;margin-right:auto;text-align:center;}
-  h1{text-align:center;}
-  .market-in{gap:3rem;}
-  .ft-inner{gap:2.5rem;}
-  .fg{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:768px){
-  nav{padding:.9rem 5%;}
-  .nav-links{display:none;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(253,246,240,.97);backdrop-filter:blur(18px);padding:1.3rem 6%;border-bottom:1px solid rgba(232,97,140,.1);gap:1.1rem;z-index:99;}
-  .nav-links.open{display:flex;}
-  .burger{display:flex;}
-  section{padding:4.5rem 5%;}
-  .feat-grid,.price-grid{grid-template-columns:1fr;}
-  .tech-grid{grid-template-columns:1fr 1fr;}
-  .mgrid{grid-template-columns:1fr 1fr;}
-  .trust{gap:1rem;}
-  .fg{grid-template-columns:1fr;gap:1.5rem;}
-  .fbtm{flex-direction:column;text-align:center;}
-  /* Roadmap mobile: left-aligned single column */
-  .rm-line::before{left:21px;transform:none;}
-  .ph{display:flex;flex-direction:row;align-items:flex-start;margin-bottom:1.8rem;}
-  .ph-gap{display:none;}
-  .ph-l,.ph-r{text-align:left!important;padding:0 0 0 1rem!important;flex:1;min-width:0;order:2;}
-  .ph-dot{order:1;flex-shrink:0;margin-top:2px;}
-  .al{flex-direction:column;align-items:flex-start;gap:.6rem;}
-}
-@media(max-width:480px){
-  .tech-grid,.mgrid{grid-template-columns:1fr;}
-  .hstats{gap:1rem;}
-  .hsep{display:none;}
-}
-</style>
+<title>Wedzy — Plan your wedding, beautifully organised</title>
+<meta name="description" content="Wedzy is the wedding planner for your phone. Guests, budget, vendors, events and checklist in one place, plus a voice assistant that fills it in for you."/>
+<meta name="theme-color" content="#FAF7F5"/>
+<meta property="og:title" content="Wedzy — Plan your wedding, beautifully organised"/>
+<meta property="og:description" content="Guests, budget, vendors, events and checklist in one place, with a voice assistant that fills it in for you."/>
+<meta property="og:url" content="https://wedzy.online/"/>
+<meta property="og:type" content="website"/>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="/assets/site.css"/>
 </head>
 <body>
+<div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="logo">Wedzy</a>
-  <ul class="nav-links" id="nl">
+<!-- Floating glass nav -->
+<header class="nav glass">
+  <a href="/" class="brand"><span class="brand-mark"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>Wedzy</a>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#features">Features</a></li>
-    <li><a href="#video-sec">Watch Demo</a></li>
-    <li><a href="#market">Market</a></li>
-    <li><a href="#tech">Technology</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="/pricing/">Pricing</a></li>
-    <li><a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" class="nav-btn">Download Free</a></li>
+    <li><a href="#voice">Voice</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
-  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Get the app</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg class="i"><use href="/assets/icons.svg#menu"/></svg></button>
+</header>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="orb o1"></div><div class="orb o2"></div>
-  <div class="sp sp1"></div><div class="sp sp2"></div><div class="sp sp3"></div><div class="sp sp4"></div>
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="eyebrow">Now Live on Google Play</div>
-      <h1>Where Weddings<br><em>Get Organized</em></h1>
-      <p class="hero-sub">The all-in-one Android app that turns wedding planning chaos into a beautifully organized journey — guests, budget, vendors, checklist &amp; inspiration, all in one place.</p>
-      <div class="hero-btns">
-        <a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" class="btn-p">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.53a2 2 0 002.75.74l12.3-7.1-2.72-2.72-12.33 9.08zm16.64-9.6L16.4 11.9l-3.07 3.07 2.72 2.71 3.77-2.18a1.5 1.5 0 000-2.57zM.5 1.87A2 2 0 000 3.25v17.5c0 .5.18.97.5 1.32l.06.06 9.8-9.8v-.2L.56 1.81.5 1.87zm10.74 10.18l3.07-3.07-12.3-7.1a2 2 0 00-2.75.74L11.24 12.05z"/></svg>
-          Get on Google Play
+<main>
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow glass"><span class="dot">New</span>A fresh new look, plus a voice assistant</span>
+      <h1 class="display">Your wedding,<br/><span class="grad-text">beautifully organised.</span></h1>
+      <p class="lead">Guests, budget, vendors, events and every last to-do in one calm place. Just say what's been decided, and Wedzy fills it in for you.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-dark store-btn" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">
+          <svg class="i"><use href="/assets/icons.svg#gplay"/></svg><span><small>GET IT ON</small><b>Google Play</b></span>
         </a>
-        <a href="#features" class="btn-o">Explore Features →</a>
+        <span class="btn btn-glass glass store-btn" aria-disabled="true">
+          <svg class="i"><use href="/assets/icons.svg#phone"/></svg><span><small>COMING SOON</small><b>iPhone</b></span>
+        </span>
       </div>
-      <div class="hstats">
-        <div class="hs"><span class="hs-n">7+</span><span class="hs-l">Core Modules</span></div>
-        <div class="hsep"></div>
-        <div class="hs"><span class="hs-n">$300B</span><span class="hs-l">Global Market</span></div>
-        <div class="hsep"></div>
-        <div class="hs"><span class="hs-n">100%</span><span class="hs-l">Data Private</span></div>
-        <div class="hsep"></div>
-        <div class="hs"><span class="hs-n">Free</span><span class="hs-l">3-Month Trial</span></div>
+      <div class="hero-pills">
+        <span class="pill f-check"><svg class="i"><use href="/assets/icons.svg#check"/></svg>Free to start</span>
+        <span class="pill f-guests"><svg class="i"><use href="/assets/icons.svg#wallet"/></svg>Pay with UPI</span>
+        <span class="pill f-events"><svg class="i"><use href="/assets/icons.svg#shield"/></svg>Your data stays private</span>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="phone-wrap">
-        <div class="pcard pb2"></div>
-        <div class="pcard pb1"></div>
-        <div class="pcard pm">
-          <div class="pnotch"></div>
-          <div class="pscreen">
-            <div class="pstatus"><span class="pst">9:29</span><span class="pst">●●● 🔋</span></div>
-            <div class="pbody">
-              <div class="pcouple">Sarah &amp; Alex 💝</div>
-              <div class="pdate">Wedding: 13/02/26</div>
-              <div class="pcd">
-                <div class="pcd-lbl">Days Until Your Wedding</div>
-                <div class="pcd-nums">
-                  <div class="pcu"><span class="pcn" id="cD">--</span><span class="pcl">days</span></div>
-                  <div class="pcu"><span class="pcn" id="cH">--</span><span class="pcl">hrs</span></div>
-                  <div class="pcu"><span class="pcn" id="cM">--</span><span class="pcl">min</span></div>
-                  <div class="pcu"><span class="pcn" id="cS">--</span><span class="pcl">sec</span></div>
-                </div>
-              </div>
-              <div class="pgrid">
-                <div class="pmini"><div class="pmini-l">Budget</div><div class="pmini-v">$2M</div><div class="pmini-s">4% spent</div></div>
-                <div class="pmini"><div class="pmini-l">Guests</div><div class="pmini-v">2</div><div class="pmini-s">100% confirmed</div></div>
-                <div class="pmini"><div class="pmini-l">Vendors</div><div class="pmini-v">1</div><div class="pmini-s">Booked</div></div>
-                <div class="pmini"><div class="pmini-l">Tasks</div><div class="pmini-v">0/5</div><div class="pmini-s">Pending</div></div>
-              </div>
+
+    <div class="hero-visual">
+      <!-- The real Soft Capsule Home screen -->
+      <div class="phone" role="img" aria-label="The Wedzy Home screen: a wedding countdown, feature shortcuts and budget and guest summaries">
+        <div class="screen">
+          <div class="m-hero">
+            <div class="m-top">
+              <span class="gc"><svg class="i"><use href="/assets/icons.svg#menu"/></svg></span>
+              <span class="gc"><svg class="i"><use href="/assets/icons.svg#image"/></svg></span>
+              <span class="gc"><svg class="i"><use href="/assets/icons.svg#pencil"/></svg></span>
             </div>
+            <div class="m-count" id="m-count">
+              <div><b>107</b><span>Days</span></div>
+              <div><b>00</b><span>Hrs</span></div>
+              <div><b>00</b><span>Min</span></div>
+              <div><b>00</b><span>Sec</span></div>
+            </div>
+            <div class="m-until">until your wedding</div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST -->
-<div class="trust">
-  <div class="ti">🔒 Complete data isolation</div>
-  <div class="ti">🏗️ Clean Arch + MVVM</div>
-  <div class="ti">📱 Jetpack Compose + M3</div>
-  <div class="ti">🔥 Firebase + Room DB</div>
-  <div class="ti">✅ Play Store v1.1.0</div>
-</div>
-
-<!-- FEATURES -->
-<section class="features mw" id="features">
-  <div class="tc">
-    <div class="s-eye">Core Features</div>
-    <h2>Everything for the <em>perfect day</em></h2>
-    <p class="lead">Seven powerful modules engineered to eliminate planning chaos — so you can enjoy the journey.</p>
-  </div>
-  <div class="feat-grid">
-    <div class="fc">
-      <div class="fc-ico">🏠</div>
-      <div class="fc-t">Live Dashboard</div>
-      <div class="fc-d">Real-time countdown (days, hours, minutes, seconds) with quick-view cards for budget, guests, vendors and gallery.</div>
-      <div class="pills"><span class="pill">Live Countdown</span><span class="pill">Overview Cards</span><span class="pill">Custom Hero Image</span></div>
-    </div>
-    <div class="fc">
-      <div class="fc-ico">✅</div>
-      <div class="fc-t">Smart Checklist</div>
-      <div class="fc-d">Full CRUD tasks with Low/Medium/High priorities, 10+ categories (Venue, Catering, Photography…) and overdue alerts.</div>
-      <div class="pills"><span class="pill">Priority Levels</span><span class="pill">Due Date Alerts</span><span class="pill">Status Filters</span></div>
-    </div>
-    <div class="fc">
-      <div class="fc-ico">💰</div>
-      <div class="fc-t">Budget Tracker</div>
-      <div class="fc-d">Category expenses with Estimated vs. Actual tracking, payment status and real-time remaining budget with multi-currency support.</div>
-      <div class="pills"><span class="pill">Multi-currency</span><span class="pill">Dual Cost Tracking</span><span class="pill">Payment Status</span></div>
-    </div>
-    <div class="fc">
-      <div class="fc-ico">👥</div>
-      <div class="fc-t">Guest Management</div>
-      <div class="fc-d">Full RSVP with Bride/Groom/Mutual sides, plus-one tracking, dietary restrictions, table assignments and thank-you card management.</div>
-      <div class="pills"><span class="pill">RSVP Tracking</span><span class="pill">Table Seating</span><span class="pill">Dietary Notes</span></div>
-    </div>
-    <div class="fc">
-      <div class="fc-ico">🏪</div>
-      <div class="fc-t">Vendor Directory</div>
-      <div class="fc-d">8-stage pipeline from Researching to Completed for photographers, caterers, venues and more — with deposit tracking and contact integration.</div>
-      <div class="pills"><span class="pill">8-Stage Pipeline</span><span class="pill">Deposit Tracking</span><span class="pill">Contact Picker</span></div>
-    </div>
-    <div class="fc">
-      <div class="fc-ico">🖼️</div>
-      <div class="fc-t">Inspiration Gallery</div>
-      <div class="fc-d">Personal mood board across 13 categories — Decor, Flowers, Dress, Cake, Hair/Makeup and more. Camera integration, favorites and smart filters.</div>
-      <div class="pills"><span class="pill">13 Categories</span><span class="pill">Camera Integration</span><span class="pill">Offline Storage</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="video-sec" id="video-sec">
-  <div class="mw">
-    <div class="tc">
-      <div class="s-eye">See It In Action</div>
-      <h2>Watch how Wedzy <em>transforms</em> your planning</h2>
-      <p class="lead">A complete walkthrough of every feature — from your first login to your perfectly organized wedding day.</p>
-    </div>
-    <div class="video-wrap">
-      <div class="video-glow"></div>
-      <div class="video-container" onclick="window.open('https://www.youtube.com/watch?v=zQjk5uoa88U','_blank')">
-        <img
-          class="vthumb"
-          src="https://img.youtube.com/vi/zQjk5uoa88U/maxresdefault.jpg"
-          onerror="this.src='https://img.youtube.com/vi/zQjk5uoa88U/hqdefault.jpg'"
-          alt="Watch Wedzy Demo"
-        />
-        <div class="voverlay">
-          <div class="vplay">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          <div class="m-pill glass">
+            <span class="icircle f-invites"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>
+            <div><b>Ananya &amp; Rohan</b><small><span id="m-date">Sun, 14 Feb</span> · <em id="m-left">107 days to go</em></small></div>
+            <svg class="i"><use href="/assets/icons.svg#chevron"/></svg>
           </div>
-          <p class="vtext">Watch App Demo</p>
-          <p class="vsub">Opens on YouTube ↗</p>
+          <div class="m-hint">Tap to edit wedding details</div>
+          <div class="m-caps">
+            <div class="capsule f-guests"><span class="cap"><svg class="i"><use href="/assets/icons.svg#users"/></svg></span>Guests</div>
+            <div class="capsule f-invites"><span class="cap"><svg class="i"><use href="/assets/icons.svg#mail"/></svg><span class="badge">New</span></span>Invites</div>
+            <div class="capsule f-vendors"><span class="cap"><svg class="i"><use href="/assets/icons.svg#store"/></svg></span>Vendors</div>
+            <div class="capsule f-events"><span class="cap"><svg class="i"><use href="/assets/icons.svg#calendar"/></svg></span>Events</div>
+            <div class="capsule f-budget"><span class="cap">₹</span>Budget</div>
+            <div class="capsule f-check"><span class="cap"><svg class="i"><use href="/assets/icons.svg#checklist"/></svg></span>Checklist</div>
+            <div class="capsule f-seating"><span class="cap"><svg class="i"><use href="/assets/icons.svg#chair"/></svg></span>Seating</div>
+            <div class="capsule f-gallery"><span class="cap"><svg class="i"><use href="/assets/icons.svg#image"/></svg></span>Gallery</div>
+          </div>
+          <div class="m-stats">
+            <div class="m-stat f-budget"><div class="row"><span class="icircle">₹</span>Budget</div><b>₹4.2L</b><small>of ₹12L</small><div class="progress"><i style="width:35%"></i></div></div>
+            <div class="m-stat f-guests"><div class="row"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#users"/></svg></span>Guests</div><b>186/240</b><small>confirmed</small><div class="progress"><i style="width:77%"></i></div></div>
+          </div>
+          <div class="m-tabs glass">
+            <span class="on"><svg class="i"><use href="/assets/icons.svg#home"/></svg></span>
+            <svg class="i"><use href="/assets/icons.svg#checklist"/></svg>
+            <svg class="i"><use href="/assets/icons.svg#users"/></svg>
+            <svg class="i"><use href="/assets/icons.svg#store"/></svg>
+          </div>
+          <span class="m-orb glass"><svg class="i"><use href="/assets/icons.svg#mic"/></svg></span>
         </div>
       </div>
-      <div class="video-pills">
-        <span class="vpill">💍 Full App Walkthrough</span>
-        <span class="vpill">📱 Android Showcase</span>
-        <span class="vpill">✨ Real Wedding Data</span>
-        <span class="vpill">⏱ 7 Modules in Action</span>
+      <div class="float a glass f-check"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#check"/></svg></span><div>Caterer booked<small>SN Foods · ₹6,00,000</small></div></div>
+      <div class="float b glass f-guests"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#users"/></svg></span><div>12 new RSVPs<small>Groom's side · today</small></div></div>
+      <div class="float c glass f-budget"><span class="icircle">₹</span><div>₹50,000 advance paid<small>Budget updated</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Every feature, one tap -->
+<section class="strip" id="features">
+  <div class="wrap">
+    <div class="strip-card card reveal">
+      <div class="strip-grid">
+        <div class="capsule f-guests"><span class="cap"><svg class="i"><use href="/assets/icons.svg#users"/></svg></span>Guests</div>
+        <div class="capsule f-invites"><span class="cap"><svg class="i"><use href="/assets/icons.svg#mail"/></svg><span class="badge">New</span></span>Invites</div>
+        <div class="capsule f-vendors"><span class="cap"><svg class="i"><use href="/assets/icons.svg#store"/></svg></span>Vendors</div>
+        <div class="capsule f-events"><span class="cap"><svg class="i"><use href="/assets/icons.svg#calendar"/></svg></span>Events</div>
+        <div class="capsule f-budget"><span class="cap">₹</span>Budget</div>
+        <div class="capsule f-check"><span class="cap"><svg class="i"><use href="/assets/icons.svg#checklist"/></svg></span>Checklist</div>
+        <div class="capsule f-seating"><span class="cap"><svg class="i"><use href="/assets/icons.svg#chair"/></svg></span>Seating</div>
+        <div class="capsule f-gallery"><span class="cap"><svg class="i"><use href="/assets/icons.svg#image"/></svg></span>Gallery</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MARKET -->
-<section class="market" id="market">
-  <div class="market-in mw">
-    <div>
-      <div class="s-eye">Market Opportunity</div>
-      <h2>A <em>$300 Billion</em><br>untapped opportunity</h2>
-      <p class="lead" style="margin-bottom:1.2rem;">The global wedding industry is recession-resistant, emotionally driven and massive. With 2.5M+ annual US weddings, India's $50B market growing 25% YoY, and no dominant all-in-one mobile solution — Wedzy's moment is now.</p>
-      <p class="lead">72% of couples plan on smartphones. We are building the operating system for the world's most important day.</p>
+<!-- Bento features -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill f-invites"><svg class="i"><use href="/assets/icons.svg#sparkles"/></svg>Everything in one place</span>
+      <h2 class="h2">One calm home for<br/>every wedding detail</h2>
+      <p class="lead">Each part of your wedding has its own colour and its own space, so you always know where you are and what's next.</p>
     </div>
-    <div class="mgrid">
-      <div class="mc"><div class="mc-n">$300B</div><div class="mc-l">Global wedding industry</div><div class="mc-s">~6% CAGR</div></div>
-      <div class="mc"><div class="mc-n">$50B</div><div class="mc-l">India wedding market</div><div class="mc-s">25% YoY growth</div></div>
-      <div class="mc"><div class="mc-n">2.5M+</div><div class="mc-l">Annual US weddings</div><div class="mc-s">$35K avg spend</div></div>
-      <div class="mc"><div class="mc-n">72%</div><div class="mc-l">Couples plan on mobile</div><div class="mc-s">No dominant all-in-one app</div></div>
+
+    <div class="bento">
+      <article class="tile card span-3 f-guests reveal">
+        <div class="head"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#users"/></svg></span><h3>Guests &amp; RSVPs</h3></div>
+        <p>Bride's side, groom's side, families and friends. Track who's coming, plus-ones and meal preferences, all in groups.</p>
+        <div class="chips"><span class="chip on">All 240</span><span class="chip">Bride's side</span><span class="chip">Groom's side</span><span class="chip">Pending 54</span></div>
+        <div class="demo">
+          <div class="row-i"><span class="icircle f-guests">MN</span>Meera Nair<span class="r pill f-check">Confirmed</span></div>
+          <div class="row-i"><span class="icircle f-vendors">KS</span>Karthik &amp; family (4)<span class="r pill f-budget">Pending</span></div>
+        </div>
+      </article>
+
+      <article class="tile card span-3 f-budget reveal">
+        <div class="head"><span class="icircle">₹</span><h3>Budget &amp; payments</h3></div>
+        <p>Quotes against final prices, advances paid and what's still due, in lakhs and crores the way you actually talk about money.</p>
+        <div class="money"><b>₹4,20,000</b><span>spent of ₹12,00,000</span></div>
+        <div class="bars demo">
+          <div><div class="lbl"><span>Catering</span><span>₹6,00,000</span></div><div class="progress f-vendors"><i style="width:62%"></i></div></div>
+          <div><div class="lbl"><span>Photography</span><span>₹1,25,950</span></div><div class="progress f-guests"><i style="width:40%"></i></div></div>
+          <div><div class="lbl"><span>Decor &amp; flowers</span><span>₹85,000</span></div><div class="progress f-check"><i style="width:22%"></i></div></div>
+        </div>
+      </article>
+
+      <article class="tile card span-2 f-vendors reveal">
+        <div class="head"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#store"/></svg></span><h3>Vendors</h3></div>
+        <p>From first call to fully paid, every photographer, caterer and decorator in one place.</p>
+        <div class="stage demo"><span class="chip">Researching</span><span class="chip">Contacted</span><span class="chip on">Booked</span><span class="chip">Paid</span></div>
+      </article>
+
+      <article class="tile card span-2 f-check reveal">
+        <div class="head"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#checklist"/></svg></span><h3>Checklist</h3></div>
+        <div class="demo">
+          <div class="check-row done"><span class="box done"><svg class="i"><use href="/assets/icons.svg#check"/></svg></span><span>Book the venue</span></div>
+          <div class="check-row done"><span class="box done"><svg class="i"><use href="/assets/icons.svg#check"/></svg></span><span>Finalise caterer</span></div>
+          <div class="check-row"><span class="box"></span><span>Mehendi artist trial</span></div>
+          <div class="check-row"><span class="box"></span><span>Send save-the-dates</span></div>
+        </div>
+      </article>
+
+      <article class="tile card span-2 f-events reveal">
+        <div class="head"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#calendar"/></svg></span><h3>Events</h3></div>
+        <p>Haldi, mehendi, sangeet, the wedding and the reception, each with its own date, venue and guest list.</p>
+        <div class="chips demo"><span class="chip on">Sangeet · Fri</span><span class="chip">Wedding · Sun</span></div>
+      </article>
+
+      <article class="tile card span-4 f-invites reveal">
+        <div class="head"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#mail"/></svg></span><h3>Invitations</h3><span class="pill f-vendors" style="margin-left:auto">New</span></div>
+        <p>Design invitation cards, then tick off who has been invited, and how, by WhatsApp, in person or by post.</p>
+        <div class="inv demo">
+          <div style="background:linear-gradient(160deg,#FF8FAB,#C59BF5)">Classic blush</div>
+          <div style="background:linear-gradient(160deg,#B8901F,#E3D4A0)">Golden haldi</div>
+          <div style="background:linear-gradient(160deg,#4F7BE0,#AA85FF)">Sangeet night</div>
+        </div>
+      </article>
+
+      <article class="tile card span-2 f-seating reveal">
+        <div class="head"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#chair"/></svg></span><h3>Seating &amp; gallery</h3></div>
+        <p>Plan the tables, and keep a mood board of decor, outfits and flowers you love.</p>
+        <div class="chips demo"><span class="chip on">Table 4 · 8 seats</span><span class="chip">Decor</span><span class="chip">Outfits</span></div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- SCREENS CAROUSEL -->
-<section class="screens mw" id="screens">
-  <div class="tc">
-    <div class="s-eye">App Experience</div>
-    <h2>Designed with <em>love</em>, built with precision</h2>
-    <p class="lead">Every screen balances elegance with utility — planning feels as beautiful as the day itself.</p>
-  </div>
-  <div style="overflow:hidden;">
-    <div class="carousel">
-      <!-- Dashboard -->
-      <div class="scard"><div class="scard-lbl">Dashboard</div><div class="smock">
-        <div class="sm-t">Sarah &amp; Alex 💝</div>
-        <div class="sm-box"><div class="sm-box-lbl">Days Until Wedding</div><div class="sm-box-v">128 : 04 : 22</div><div class="sm-box-s">days · hrs · min</div></div>
-        <div class="sm-g2"><div class="sm-m"><div class="sm-ml">Budget</div><div class="sm-mv">$2M</div><div class="sm-ms">4% spent</div></div><div class="sm-m"><div class="sm-ml">Guests</div><div class="sm-mv">2</div><div class="sm-ms">100% confirmed</div></div></div>
-        <div class="sm-row"><span class="sm-rl">📋 Book Photographer</span><span class="chip cy">Pending</span></div>
-        <div class="sm-row"><span class="sm-rl">💐 Choose Flowers</span><span class="chip cr">Overdue</span></div>
-      </div></div>
-      <!-- Guests -->
-      <div class="scard"><div class="scard-lbl">Guest List</div><div class="smock">
-        <div class="sm-t">Guest List 👥</div>
-        <div class="sm-g2"><div class="sm-m" style="text-align:center"><div class="sm-mv">2</div><div class="sm-ml">Total</div></div><div class="sm-m" style="text-align:center"><div class="sm-mv">1</div><div class="sm-ml">Confirmed</div></div></div>
-        <div class="sm-av"><div class="sm-ava">J</div><span class="sm-an">Jacob</span><span class="chip cy">Pending</span></div>
-        <div class="sm-av"><div class="sm-ava">S</div><span class="sm-an">Sam Altman</span><span class="chip cg">Confirmed</span></div>
-        <div class="sm-av"><div class="sm-ava">R</div><span class="sm-an">Rachel</span><span class="chip cr">Declined</span></div>
-        <div class="sm-row"><span class="sm-rl">Side: Groom</span><span class="sm-rl">+1 invited</span></div>
-      </div></div>
-      <!-- Budget -->
-      <div class="scard"><div class="scard-lbl">Budget</div><div class="smock">
-        <div class="sm-t">Budget 💰</div>
-        <div class="sm-box"><div class="sm-box-lbl">Total Budget</div><div class="sm-box-v" style="font-size:.9rem;">$2,000,000</div><div class="sm-box-s">$8K spent · 4% used</div></div>
-        <div class="sm-bar"><div class="sm-bf" style="width:4%"></div></div>
-        <div class="sm-row"><span class="sm-rl">Catering</span><span class="sm-rv">$8,000</span></div>
-        <div class="sm-row"><span class="sm-rl">Photography</span><span class="sm-rv">—</span></div>
-        <div class="sm-row"><span class="sm-rl">Venue</span><span class="sm-rv">—</span></div>
-      </div></div>
-      <!-- Vendors -->
-      <div class="scard"><div class="scard-lbl">Vendors</div><div class="smock">
-        <div class="sm-t">Vendors 🏪</div>
-        <div class="sm-vnd"><div class="sm-vn">Elite Caterers Co.</div><div class="sm-vc">CATERING · Fully Paid</div><div class="sm-vp">$8,000</div></div>
-        <div class="sm-vnd"><div class="sm-vn">Rose Photography</div><div class="sm-vc">PHOTOGRAPHY · Contacted</div><div class="sm-vp">$5,000 est.</div></div>
-        <div class="sm-vnd"><div class="sm-vn">Grand Ballroom</div><div class="sm-vc">VENUE · Researching</div><div class="sm-vp">TBD</div></div>
-      </div></div>
-      <!-- Analytics -->
-      <div class="scard"><div class="scard-lbl">Analytics</div><div class="smock">
-        <div class="sm-t">Analytics 📊</div>
-        <div class="sm-row"><span class="sm-rl">Guests</span><span class="sm-rv">100% confirmed</span></div>
-        <div class="sm-row"><span class="sm-rl">Tasks</span><span class="sm-rv">0% complete</span></div>
-        <div class="sm-row"><span class="sm-rl">Top Expense</span><span class="sm-rv">$8K Catering</span></div>
-        <div style="margin-top:5px"><div class="sm-rl" style="font-weight:700;font-size:.56rem;margin-bottom:3px;">Budget Health</div>
-        <div class="sm-bar"><div class="sm-bf" style="width:4%"></div></div></div>
-      </div></div>
-      <!-- Gallery -->
-      <div class="scard"><div class="scard-lbl">Gallery</div><div class="smock">
-        <div class="sm-t">Inspiration 🖼️</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px;">
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#fde8f0,#f0c8ee);display:flex;align-items:center;justify-content:center;font-size:1rem;">💐</div>
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#dcc8f8,#c8d8ff);display:flex;align-items:center;justify-content:center;font-size:1rem;">👗</div>
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#fde8f0,#f8e8c8);display:flex;align-items:center;justify-content:center;font-size:1rem;">🎂</div>
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#c8f8e8,#c8f0d8);display:flex;align-items:center;justify-content:center;font-size:1rem;">📸</div>
+<!-- Voice assistant -->
+<section class="sec" id="voice" style="padding-top:0">
+  <div class="wrap">
+    <div class="voice reveal">
+      <div>
+        <span class="pill f-guests"><svg class="i"><use href="/assets/icons.svg#wave"/></svg>Voice assistant</span>
+        <h2 class="h2" style="margin:18px 0 16px">Just say it.<br/><span class="grad-text">Wedzy writes it down.</span></h2>
+        <p class="lead">Tap the mic after a call with a vendor and say what was decided. Wedzy adds the vendor, the expense and the payment, and shows you the changes before anything is saved.</p>
+        <ul class="ticks">
+          <li><span class="icircle f-check"><svg class="i"><use href="/assets/icons.svg#check"/></svg></span>Understands Indian English, rupees and lakhs</li>
+          <li><span class="icircle f-check"><svg class="i"><use href="/assets/icons.svg#check"/></svg></span>Nothing changes until you tap Apply</li>
+          <li><span class="icircle f-check"><svg class="i"><use href="/assets/icons.svg#check"/></svg></span>Works with vendors, budget, guests, events and tasks</li>
+        </ul>
+      </div>
+      <div class="voice-ui">
+        <span class="orb"><svg class="i"><use href="/assets/icons.svg#mic"/></svg></span>
+        <div class="bubble card"><small>You said</small>"Finalised SN Foods for catering at six lakh rupees, paid fifty thousand as advance."</div>
+        <div class="plan card">
+          <div class="row-i"><span class="icircle f-vendors"><svg class="i"><use href="/assets/icons.svg#store"/></svg></span>Add vendor · SN Foods<span class="r pill f-vendors">Catering</span></div>
+          <div class="row-i"><span class="icircle f-budget">₹</span>Expense · ₹6,00,000<span class="r pill f-budget">₹50,000 paid</span></div>
+          <div class="apply"><span class="btn btn-capsule btn-sm f-stone">Cancel</span><span class="btn btn-primary btn-sm">Apply</span></div>
         </div>
-        <div style="display:flex;gap:3px;flex-wrap:wrap;margin-top:6px;">
-          <span class="pill" style="font-size:.44rem">Decor</span><span class="pill" style="font-size:.44rem">Flowers</span><span class="pill" style="font-size:.44rem">Dress</span><span class="pill" style="font-size:.44rem">Cake</span>
-        </div>
-      </div></div>
-      <!-- Duplicates for seamless loop -->
-      <div class="scard"><div class="scard-lbl">Dashboard</div><div class="smock">
-        <div class="sm-t">Sarah &amp; Alex 💝</div>
-        <div class="sm-box"><div class="sm-box-lbl">Days Until Wedding</div><div class="sm-box-v">128 : 04 : 22</div><div class="sm-box-s">days · hrs · min</div></div>
-        <div class="sm-g2"><div class="sm-m"><div class="sm-ml">Budget</div><div class="sm-mv">$2M</div></div><div class="sm-m"><div class="sm-ml">Guests</div><div class="sm-mv">2</div></div></div>
-        <div class="sm-row"><span class="sm-rl">📋 Book Photographer</span><span class="chip cy">Pending</span></div>
-      </div></div>
-      <div class="scard"><div class="scard-lbl">Guest List</div><div class="smock">
-        <div class="sm-t">Guest List 👥</div>
-        <div class="sm-av"><div class="sm-ava">J</div><span class="sm-an">Jacob</span><span class="chip cy">Pending</span></div>
-        <div class="sm-av"><div class="sm-ava">S</div><span class="sm-an">Sam Altman</span><span class="chip cg">Confirmed</span></div>
-        <div class="sm-av"><div class="sm-ava">R</div><span class="sm-an">Rachel</span><span class="chip cr">Declined</span></div>
-      </div></div>
-      <div class="scard"><div class="scard-lbl">Budget</div><div class="smock">
-        <div class="sm-t">Budget 💰</div>
-        <div class="sm-box"><div class="sm-box-lbl">Total Budget</div><div class="sm-box-v" style="font-size:.9rem;">$2,000,000</div></div>
-        <div class="sm-bar"><div class="sm-bf" style="width:4%"></div></div>
-        <div class="sm-row"><span class="sm-rl">Catering</span><span class="sm-rv">$8,000</span></div>
-      </div></div>
-      <div class="scard"><div class="scard-lbl">Vendors</div><div class="smock">
-        <div class="sm-t">Vendors 🏪</div>
-        <div class="sm-vnd"><div class="sm-vn">Elite Caterers Co.</div><div class="sm-vc">CATERING · Fully Paid</div><div class="sm-vp">$8,000</div></div>
-        <div class="sm-vnd"><div class="sm-vn">Rose Photography</div><div class="sm-vc">Contacted</div><div class="sm-vp">$5,000 est.</div></div>
-      </div></div>
-      <div class="scard"><div class="scard-lbl">Analytics</div><div class="smock">
-        <div class="sm-t">Analytics 📊</div>
-        <div class="sm-row"><span class="sm-rl">Guests</span><span class="sm-rv">100% confirmed</span></div>
-        <div class="sm-row"><span class="sm-rl">Budget Used</span><span class="sm-rv">4%</span></div>
-        <div class="sm-bar" style="margin-top:4px"><div class="sm-bf" style="width:4%"></div></div>
-      </div></div>
-      <div class="scard"><div class="scard-lbl">Gallery</div><div class="smock">
-        <div class="sm-t">Inspiration 🖼️</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px;">
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#fde8f0,#f0c8ee);display:flex;align-items:center;justify-content:center;font-size:1rem;">💐</div>
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#dcc8f8,#c8d8ff);display:flex;align-items:center;justify-content:center;font-size:1rem;">👗</div>
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#fde8f0,#f8e8c8);display:flex;align-items:center;justify-content:center;font-size:1rem;">🎂</div>
-          <div style="height:52px;border-radius:8px;background:linear-gradient(135deg,#c8f8e8,#c8f0d8);display:flex;align-items:center;justify-content:center;font-size:1rem;">📸</div>
-        </div>
-      </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TECH -->
-<section class="tech" id="tech">
-  <div class="mw">
-    <div class="tc">
-      <div class="s-eye">Technology</div>
-      <h2>World-class <em>modern Android</em> stack</h2>
-      <p class="lead">Production-grade architecture from day one — built for scale, security and long-term maintainability.</p>
-    </div>
-    <div class="tech-grid">
-      <div class="tcc"><div class="tcc-l">Language</div><div class="tcc-n">Kotlin 2.0+</div><div class="tcc-d">Null-safe, coroutine-native with KSP annotation processing.</div></div>
-      <div class="tcc"><div class="tcc-l">UI Layer</div><div class="tcc-n">Jetpack Compose</div><div class="tcc-d">Declarative UI with Material 3 and Compose Animation.</div></div>
-      <div class="tcc"><div class="tcc-l">Architecture</div><div class="tcc-n">MVVM + Clean</div><div class="tcc-d">Repository Pattern, Use Cases, strict Unidirectional Data Flow.</div></div>
-      <div class="tcc"><div class="tcc-l">DI</div><div class="tcc-n">Hilt 2.x</div><div class="tcc-d">Compile-time DI on Dagger 2 — zero runtime overhead.</div></div>
-      <div class="tcc"><div class="tcc-l">Database</div><div class="tcc-n">Room + DataStore</div><div class="tcc-d">UID-keyed user isolation, Flow-based reactivity, encrypted prefs.</div></div>
-      <div class="tcc"><div class="tcc-l">Auth</div><div class="tcc-n">Firebase Auth</div><div class="tcc-d">Email/Password &amp; Google Sign-In. Per-UID data isolation.</div></div>
-      <div class="tcc"><div class="tcc-l">Async</div><div class="tcc-n">Kotlin Flows</div><div class="tcc-d">StateFlow, SharedFlow, structured coroutines throughout.</div></div>
-      <div class="tcc"><div class="tcc-l">Camera</div><div class="tcc-n">CameraX 1.3</div><div class="tcc-d">Lifecycle-aware camera with Coil 2.x image loading.</div></div>
-    </div>
-    <div class="arch">
-      <div class="arch-t">Clean Architecture — Three-Layer Design</div>
-      <div class="arch-layers">
-        <div class="al"><div class="al-nm">UI Layer</div><div class="al-items"><span class="al-i">Compose Screens</span><span class="al-i">ViewModels</span><span class="al-i">StateFlow</span><span class="al-i">Navigation</span><span class="al-i">M3 Theme</span></div></div>
-        <div class="al v"><div class="al-nm">Domain Layer</div><div class="al-items"><span class="al-i">Use Cases</span><span class="al-i">Business Logic</span><span class="al-i">Domain Models</span></div></div>
-        <div class="al g"><div class="al-nm">Data Layer</div><div class="al-items"><span class="al-i">Repositories</span><span class="al-i">Room DB</span><span class="al-i">DataStore</span><span class="al-i">Firebase Auth</span><span class="al-i">CameraX</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ROADMAP -->
-<section class="roadmap" id="roadmap">
-  <div class="rm-inner">
-    <div class="tc">
-      <div class="s-eye">Product Roadmap</div>
-      <h2>Building the world's <em>wedding operating system</em></h2>
-      <p class="lead">A four-phase journey from product launch to a global franchise-powered wedding platform — where every wedding is organized to perfection, with no surprises.</p>
+<!-- Demo video -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill f-events"><svg class="i"><use href="/assets/icons.svg#play"/></svg>See it in action</span>
+      <h2 class="h2">A quick tour of Wedzy</h2>
     </div>
-    <div class="rm-line">
+    <a class="video reveal" href="https://www.youtube.com/watch?v=zQjk5uoa88U" target="_blank" rel="noopener" aria-label="Watch the Wedzy demo on YouTube">
+      <img src="https://img.youtube.com/vi/zQjk5uoa88U/sddefault.jpg" alt="" loading="lazy"/>
+      <span class="play glass"><svg class="i"><use href="/assets/icons.svg#play"/></svg></span>
+      <span class="cap-txt">Watch the walkthrough · opens on YouTube</span>
+    </a>
+  </div>
+</section>
 
-      <!-- Phase 1: DONE — Initial Product Launch -->
-      <div class="ph">
-        <div class="ph-l">
-          <span class="ph-badge bd">✅ Launched — Feb 2026</span>
-          <div class="ph-name">Initial Product Launch</div>
-          <div class="ph-desc">Full-featured app live on Google Play — Dashboard with live countdown, Checklist, Budget Tracker, Guest Management, Vendor Directory, Inspiration Gallery &amp; Events. Firebase Auth with complete per-user data isolation. Currently on a full free trial to build user base and market momentum.</div>
-        </div>
-        <div class="ph-dot dd">🚀</div>
-        <div class="ph-gap"></div>
+<!-- Pricing -->
+<section class="sec" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill f-budget"><svg class="i"><use href="/assets/icons.svg#wallet"/></svg>Simple pricing</span>
+      <h2 class="h2">Pay once. No subscriptions.</h2>
+      <p class="lead">Start free. When you want more, pay once with UPI or any other method you like. No credit card needed and no automatic renewals.</p>
+    </div>
+    <div class="plans">
+      <div class="plan-card card f-stone reveal">
+        <h3>Free</h3>
+        <div class="price"><b>₹0</b><span>forever</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Every planning feature</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>20 voice commands a month</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Android &amp; iPhone</li>
+        </ul>
+        <a class="btn btn-capsule" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Download free</a>
       </div>
-
-      <!-- Phase 2: IN PROGRESS — Marketplace & Revenue -->
-      <div class="ph">
-        <div class="ph-gap"></div>
-        <div class="ph-dot dc">⚡</div>
-        <div class="ph-r">
-          <span class="ph-badge bc">🔨 In Progress</span>
-          <div class="ph-name">Marketplace &amp; Revenue</div>
-          <div class="ph-desc">Partner collaboration, curated vendor marketplace with native booking &amp; payments, AI-powered vendor recommendations, premium analytics dashboard, wedding website builder, guest RSVP portal and monetization launch with subscription tiers.</div>
-        </div>
+      <div class="plan-card card hot f-invites reveal">
+        <span class="tag">Most popular</span>
+        <h3>Wedding Pass</h3>
+        <div class="price"><b>₹999</b><span>once · 12 months</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Everything in Free</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>250 voice commands a month</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Completely ad-free</li>
+        </ul>
+        <a class="btn btn-primary" href="/pricing/">Get the Pass</a>
       </div>
-
-      <!-- Phase 3: PLANNED — Enterprise Wedding Management -->
-      <div class="ph">
-        <div class="ph-l">
-          <span class="ph-badge bf">🔜 Planned</span>
-          <div class="ph-name">Enterprise Wedding Management</div>
-          <div class="ph-desc">End-to-end professional wedding management platform — white-label tools for agencies, professional planner accounts with full client management, SLA-backed vendor partnerships, advanced B2B reporting and enterprise SaaS licensing for the wedding planning industry.</div>
-        </div>
-        <div class="ph-dot df">🏢</div>
-        <div class="ph-gap"></div>
+      <div class="plan-card card f-guests reveal">
+        <h3>Wedding Pass Plus</h3>
+        <div class="price"><b>₹2,999</b><span>once · 12 months</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Everything in Wedding Pass</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>750 voice commands a month</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Plan together with family</li>
+        </ul>
+        <a class="btn btn-capsule" href="/pricing/">Get Plus</a>
       </div>
-
-      <!-- Phase 4: VISION — Global Franchise Model -->
-      <div class="ph">
-        <div class="ph-gap"></div>
-        <div class="ph-dot df">🌍</div>
-        <div class="ph-r">
-          <span class="ph-badge bv">🌟 Vision</span>
-          <div class="ph-name">Global Franchise &amp; Standards</div>
-          <div class="ph-desc">A worldwide franchise model where certified Wedzy partners organize weddings end-to-end — adhering to globally set quality standards so every couple, anywhere in the world, experiences a perfectly orchestrated wedding with absolutely no surprises. The Wedzy Standard becomes the gold mark of wedding excellence.</div>
-        </div>
+      <div class="plan-card card f-gallery reveal">
+        <h3>Keepsake</h3>
+        <div class="price"><b>₹499</b><span>a year</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>For after the wedding</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Keep every memory synced</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Anniversary reminders</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Ad-free, 20 voice commands a month</li>
+        </ul>
+        <a class="btn btn-capsule" href="/pricing/">Learn more</a>
       </div>
-
+    </div>
+    <div class="pay-row reveal">
+      <span class="pill f-check">UPI</span><span class="pill f-events">Debit &amp; credit cards</span><span class="pill f-guests">Netbanking</span><span class="pill f-budget">Wallets</span><span class="pill f-stone"><svg class="i"><use href="/assets/icons.svg#lock"/></svg>Secured by Razorpay</span>
     </div>
   </div>
 </section>
 
-<!-- FREE TRIAL BANNER -->
-<section class="freetrial" id="freetrial">
-  <div class="ft-inner mw">
-    <div class="ft-left">
-      <div class="s-eye" style="color:var(--rose-soft)">Available Now</div>
-      <h2 style="color:#fff;">Completely <em style="-webkit-text-fill-color:unset;color:var(--rose-soft);">free</em> for the next 3 months</h2>
-      <p class="lead" style="color:rgba(255,255,255,.6);max-width:480px;">We're in full free trial mode — every feature, zero cost. Download now, plan your wedding, and be among the first couples to experience Wedzy at its best. Pricing announced in Q2 2026.</p>
+<!-- Partners & investors -->
+<section class="sec" id="partners" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill f-events"><svg class="i"><use href="/assets/icons.svg#globe"/></svg>For partners &amp; investors</span>
+      <h2 class="h2">Building the operating system<br/>for the big day</h2>
+      <p class="lead">Weddings are a huge, emotional, recession-resistant market, and there's still no clear favourite app for planning one.</p>
     </div>
-    <div class="ft-right">
-      <div class="ft-card">
-        <div class="ft-card-top">
-          <div class="ft-badge">🎉 Free Trial</div>
-          <div class="ft-price">Free</div>
-          <div class="ft-sub">All features · No credit card · 3 months</div>
-        </div>
-        <div class="ft-features">
-          <div class="ft-f">✦ Live Wedding Countdown Dashboard</div>
-          <div class="ft-f">✦ Unlimited Guest Management &amp; RSVP</div>
-          <div class="ft-f">✦ Budget Tracker with multi-currency</div>
-          <div class="ft-f">✦ Full Vendor Directory &amp; pipeline</div>
-          <div class="ft-f">✦ Inspiration Gallery (13 categories)</div>
-          <div class="ft-f">✦ Events, Checklist &amp; Analytics</div>
-        </div>
-        <a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" class="ft-cta">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.53a2 2 0 002.75.74l12.3-7.1-2.72-2.72-12.33 9.08zm16.64-9.6L16.4 11.9l-3.07 3.07 2.72 2.71 3.77-2.18a1.5 1.5 0 000-2.57zM.5 1.87A2 2 0 000 3.25v17.5c0 .5.18.97.5 1.32l.06.06 9.8-9.8v-.2L.56 1.81.5 1.87zm10.74 10.18l3.07-3.07-12.3-7.1a2 2 0 00-2.75.74L11.24 12.05z"/></svg>
-          Download on Google Play — Free
-        </a>
-      </div>
+    <div class="stats">
+      <div class="stat card f-invites reveal"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#globe"/></svg></span><b>$300B</b><span>global wedding industry</span></div>
+      <div class="stat card f-budget reveal"><span class="icircle">₹</span><b>$50B</b><span>Indian wedding market, growing fast</span></div>
+      <div class="stat card f-guests reveal"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#phone"/></svg></span><b>72%</b><span>of couples plan on their phones</span></div>
+      <div class="stat card f-check reveal"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#sparkles"/></svg></span><b>2</b><span>platforms: Android live, iPhone next</span></div>
+    </div>
+    <div class="road">
+      <div class="card f-check reveal"><span class="pill">Live</span><h3>Planner app</h3><p>Countdown, guests, budget, vendors, events, checklist and gallery on Google Play.</p></div>
+      <div class="card f-invites reveal"><span class="pill">Now</span><h3>Voice, invites &amp; payments</h3><p>Voice assistant, invitation cards, the new design, UPI passes and the iPhone app.</p></div>
+      <div class="card f-events reveal"><span class="pill">Next</span><h3>Marketplace</h3><p>Curated vendors with booking and payments, AI recommendations and an RSVP portal.</p></div>
+      <div class="card f-guests reveal"><span class="pill">Vision</span><h3>The Wedzy Standard</h3><p>Certified planning partners delivering weddings to one standard, with no surprises.</p></div>
+    </div>
+    <p class="note reveal">Talk to us about partnerships or investment: <a href="mailto:ajithprasadpv@gmail.com" style="color:var(--invites);font-weight:600">ajithprasadpv@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill f-seating">Questions</span>
+      <h2 class="h2">Good to know</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>Is Wedzy free?</summary><p>Yes. Every planning feature is free, with 20 voice commands a month. Paid plans add more voice commands and remove ads.</p></details>
+      <details><summary>Do I need a credit card to pay?</summary><p>No. Buy a plan on this website with UPI (Google Pay, PhonePe, Paytm and others), a debit card, netbanking or a wallet. Payments are processed securely by Razorpay.</p></details>
+      <details><summary>Will I be charged every month?</summary><p>Never. Every plan is a one-time payment. Nothing renews automatically.</p></details>
+      <details><summary>How does my plan reach the app?</summary><p>Sign in on this website with the same account you use in the app. Your plan is active the moment the payment succeeds, on Android and iPhone.</p></details>
+      <details><summary>Is my data private?</summary><p>Your planning data belongs to you. It's tied to your account, and we never sell it or use it for advertising. Read the <a href="/privacy/" style="color:var(--invites)">privacy policy</a>.</p></details>
+      <details><summary>Can I get a refund?</summary><p>Yes. Write to us within 7 days of buying for a full refund. See the <a href="/refund-policy/" style="color:var(--invites)">refund policy</a>.</p></details>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
-  <div class="cta-in">
-    <div class="s-eye">Get Started Today</div>
-    <h2>Ready to plan the <em>perfect wedding?</em></h2>
-    <p class="lead">Live on Google Play. Download free and start in minutes. For VC conversations and partnerships — let's connect.</p>
-    <div class="cta-btns">
-      <a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" class="btn-p">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.53a2 2 0 002.75.74l12.3-7.1-2.72-2.72-12.33 9.08zm16.64-9.6L16.4 11.9l-3.07 3.07 2.72 2.71 3.77-2.18a1.5 1.5 0 000-2.57zM.5 1.87A2 2 0 000 3.25v17.5c0 .5.18.97.5 1.32l.06.06 9.8-9.8v-.2L.56 1.81.5 1.87zm10.74 10.18l3.07-3.07-12.3-7.1a2 2 0 00-2.75.74L11.24 12.05z"/></svg>
-        Download on Google Play
-      </a>
-      <a href="mailto:ajithprasadpv@gmail.com" class="btn-gh">💌 Investor Enquiry</a>
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <span class="brand-mark" style="width:64px;height:64px;font-size:28px;background:rgba(255,255,255,.25);box-shadow:none"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>
+      <h2 class="h2">Start planning in minutes</h2>
+      <p>Download Wedzy free, set your wedding date and watch everything fall into place.</p>
+      <div class="hero-ctas" style="justify-content:center">
+        <a class="btn btn-dark store-btn" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener"><svg class="i"><use href="/assets/icons.svg#gplay"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a>
+        <a class="btn btn-glass store-btn" href="/pricing/"><svg class="i"><use href="/assets/icons.svg#sparkles"/></svg><span><small>ONE-TIME PASS</small><b>See plans</b></span></a>
+      </div>
     </div>
   </div>
 </section>
+</main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="fg">
-    <div class="fb">
-      <a href="#" class="logo-f">Wedzy</a>
-      <p>The all-in-one wedding planning app. Where every couple's most important day gets organized beautifully.</p>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="/" class="brand"><span class="brand-mark"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>Wedzy</a>
+        <p>The wedding planner that keeps every detail of your big day in one calm place.</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/#features">Features</a></li><li><a href="/#voice">Voice assistant</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Google Play</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="/contact/">Contact</a></li><li><a href="/#partners">Partners &amp; investors</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of use</a></li><li><a href="/refund-policy/">Refunds &amp; cancellation</a></li></ul></div>
     </div>
-    <div class="fcol">
-      <h4>Product</h4>
-      <a href="#features">Features</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#freetrial">Free Trial</a>
-      <a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank">Google Play</a>
-    </div>
-    <div class="fcol">
-      <h4>Company</h4>
-      <a href="/contact/">Contact Us</a>
-      <a href="mailto:ajithprasadpv@gmail.com">Investor Relations</a>
-      <a href="/privacy/">Privacy Policy</a>
-      <a href="/terms/">Terms of Use</a>
-      <a href="/refund-policy/">Refund Policy</a>
-      <a href="/pricing/">Pricing</a>
-    </div>
-  </div>
-  <div class="fbtm">
-    <span>© 2026 Wedzy. All rights reserved.</span>
-    <span>Built with ❤️ by <a href="https://cipherkloud.com" target="_blank">CipherKloud Technologies</a> · Ajith Prasad</span>
+    <div class="foot-bottom"><span>© 2026 Wedzy. All rights reserved.</span><span>Made with love in India by CipherKloud Technologies</span></div>
   </div>
 </footer>
 
-<script>
-// Countdown Timer
-function tick() {
-  const weddingDate = new Date('2026-02-13T00:00:00');
-  const now = new Date();
-  const diff = weddingDate - now;
-  const isPast = diff < 0;
-  const absDiff = Math.abs(diff);
-  const fmt = x => String(x).padStart(2, '0');
-  document.getElementById('cD').textContent = isPast ? '🎉' : fmt(Math.floor(absDiff / 86400000));
-  document.getElementById('cH').textContent = isPast ? '🎉' : fmt(Math.floor((absDiff % 86400000) / 3600000));
-  document.getElementById('cM').textContent = isPast ? '🎉' : fmt(Math.floor((absDiff % 3600000) / 60000));
-  document.getElementById('cS').textContent = isPast ? '🎉' : fmt(Math.floor((absDiff % 60000) / 1000));
-}
-tick();
-setInterval(tick, 1000);
-
-// Nav scroll shadow
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('up', window.scrollY > 40);
-});
-
-// Mobile burger menu
-document.getElementById('burger').addEventListener('click', () => {
-  document.getElementById('nl').classList.toggle('open');
-});
-document.querySelectorAll('#nl a').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('nl').classList.remove('open'));
-});
-</script>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>

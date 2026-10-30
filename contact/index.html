@@ -3,35 +3,50 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact Us · Wedzy</title>
+<title>Contact · Wedzy</title>
 <meta name="description" content="Get in touch with the Wedzy team."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/page.css"/>
+<meta name="theme-color" content="#FAF7F5"/>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="/assets/site.css"/>
 </head>
 <body>
-<header>
-  <a href="/" class="logo">Wedzy</a>
-  <nav><a href="/pricing/">Pricing</a><a href="/contact/">Contact</a></nav>
+<div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+<header class="nav glass">
+  <a href="/" class="brand"><span class="brand-mark"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>Wedzy</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/pricing/">Pricing</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+    <li><a href="/contact/" aria-current="page">Contact</a></li>
+  </ul>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Get the app</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg class="i"><use href="/assets/icons.svg#menu"/></svg></button>
 </header>
-<main>
-
-<h1>Contact Us</h1>
-<p class="meta">We usually reply within 24–48 hours.</p>
-<div class="card">
-  <h2 style="margin-top:0">Support &amp; payments</h2>
-  <p>Email: <a href="mailto:ajithprasadpv@gmail.com">ajithprasadpv@gmail.com</a></p>
-  <p>For payment questions, include the email address of your Wedzy account and your Razorpay payment ID.</p>
-  <h2>Business &amp; partnerships</h2>
-  <p>Email: <a href="mailto:ajithprasadpv@gmail.com">ajithprasadpv@gmail.com</a></p>
-  <h2>Operated by</h2>
-  <p>Wedzy · CipherKloud Technologies<br/>India</p>
+<main class="page">
+<div class="wrap">
+<div class="page-head reveal in"><span class="icircle f-invites"><svg class="i"><use href="/assets/icons.svg#mail"/></svg></span><h1>We'd love to hear from you</h1><p class="meta">We usually reply within 24–48 hours.</p></div>
+<div class="contact-grid">
+  <div class="card f-invites reveal in"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span><h3>Help &amp; support</h3><p>Questions about the app, your account or your wedding data.</p><a class="link" href="mailto:ajithprasadpv@gmail.com">ajithprasadpv@gmail.com</a></div>
+  <div class="card f-budget reveal in"><span class="icircle">₹</span><h3>Payments &amp; refunds</h3><p>Include your Wedzy account email and the Razorpay payment ID from your receipt.</p><a class="link" href="mailto:ajithprasadpv@gmail.com?subject=Wedzy%20payment">ajithprasadpv@gmail.com</a></div>
+  <div class="card f-events reveal in"><span class="icircle"><svg class="i"><use href="/assets/icons.svg#globe"/></svg></span><h3>Partners &amp; investors</h3><p>Vendors, planners and investors who'd like to work with us.</p><a class="link" href="mailto:ajithprasadpv@gmail.com?subject=Wedzy%20partnership">ajithprasadpv@gmail.com</a></div>
+</div>
+<p class="note">Wedzy is operated by CipherKloud Technologies, India.</p>
 </div>
 </main>
-<footer>
-  <a href="/">Home</a><a href="/pricing/">Pricing</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/refund-policy/">Refunds</a><a href="/contact/">Contact</a>
-  <p style="margin-top:.8rem">© 2026 Wedzy. All rights reserved.</p>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="/" class="brand"><span class="brand-mark"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>Wedzy</a>
+        <p>The wedding planner that keeps every detail of your big day in one calm place.</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/#features">Features</a></li><li><a href="/#voice">Voice assistant</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Google Play</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="/contact/">Contact</a></li><li><a href="/#partners">Partners &amp; investors</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of use</a></li><li><a href="/refund-policy/">Refunds &amp; cancellation</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Wedzy. All rights reserved.</span><span>Made with love in India by CipherKloud Technologies</span></div>
+  </div>
 </footer>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>

@@ -4,29 +4,97 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Pricing · Wedzy</title>
-<meta name="description" content="Get in touch with the Wedzy team."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/page.css"/>
+<meta name="description" content="Wedzy plans: Free, Wedding Pass, Wedding Pass Plus and Keepsake. Pay once with UPI."/>
+<meta name="theme-color" content="#FAF7F5"/>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="/assets/site.css"/>
 </head>
 <body>
-<header>
-  <a href="/" class="logo">Wedzy</a>
-  <nav><a href="/pricing/">Pricing</a><a href="/contact/">Contact</a></nav>
+<div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+<header class="nav glass">
+  <a href="/" class="brand"><span class="brand-mark"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>Wedzy</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/pricing/" aria-current="page">Pricing</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Get the app</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg class="i"><use href="/assets/icons.svg#menu"/></svg></button>
 </header>
-<main>
-<h1>Pricing</h1>
-<p class="meta">Wedzy is free to download and use.</p>
-<div class="card">
-  <h2 style="margin-top:0">Wedding Pass &mdash; launching soon</h2>
-  <p>A one-time payment for Wedzy Premium, payable by UPI, card, netbanking or wallet. No subscription and no automatic renewals.</p>
-  <a class="btn" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank">Download Wedzy free</a>
+<main class="page">
+<div class="wrap">
+<div class="page-head reveal in"><span class="icircle f-budget"><svg class="i"><use href="/assets/icons.svg#wallet"/></svg></span><h1>Pay once. Plan in peace.</h1><p class="meta">One-time payments with UPI, cards, netbanking or wallets. Nothing renews automatically.</p></div>
+<div class="plans">
+      <div class="plan-card card f-stone reveal">
+        <h3>Free</h3>
+        <div class="price"><b>₹0</b><span>forever</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Every planning feature</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>20 voice commands a month</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Android &amp; iPhone</li>
+        </ul>
+        <a class="btn btn-capsule" href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Download free</a>
+      </div>
+      <div class="plan-card card hot f-invites reveal">
+        <span class="tag">Most popular</span>
+        <h3>Wedding Pass</h3>
+        <div class="price"><b>₹999</b><span>once · 12 months</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Everything in Free</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>250 voice commands a month</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Completely ad-free</li>
+        </ul>
+        <a class="btn btn-primary" href="mailto:ajithprasadpv@gmail.com?subject=Wedding%20Pass">Get the Pass</a>
+      </div>
+      <div class="plan-card card f-guests reveal">
+        <h3>Wedding Pass Plus</h3>
+        <div class="price"><b>₹2,999</b><span>once · 12 months</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Everything in Wedding Pass</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>750 voice commands a month</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Plan together with family</li>
+        </ul>
+        <a class="btn btn-capsule" href="mailto:ajithprasadpv@gmail.com?subject=Wedding%20Pass%20Plus">Get Plus</a>
+      </div>
+      <div class="plan-card card f-gallery reveal">
+        <h3>Keepsake</h3>
+        <div class="price"><b>₹499</b><span>a year</span></div>
+        <ul>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>For after the wedding</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Keep every memory synced</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Anniversary reminders</li>
+          <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Ad-free, 20 voice commands a month</li>
+        </ul>
+        <a class="btn btn-capsule" href="mailto:ajithprasadpv@gmail.com?subject=Keepsake">Ask about Keepsake</a>
+      </div>
+    </div>
+    <div class="pay-row reveal">
+      <span class="pill f-check">UPI</span><span class="pill f-events">Debit &amp; credit cards</span><span class="pill f-guests">Netbanking</span><span class="pill f-budget">Wallets</span><span class="pill f-stone"><svg class="i"><use href="/assets/icons.svg#lock"/></svg>Secured by Razorpay</span>
+    </div>
+
+<div class="faq" style="margin-top:56px">
+  <details open><summary>When does checkout open?</summary><p>Online checkout is launching very soon. Until then, every feature is free in the app. Want a pass now? Write to <a href="mailto:ajithprasadpv@gmail.com" style="color:var(--invites)">ajithprasadpv@gmail.com</a>.</p></details>
+  <details><summary>Which account gets the plan?</summary><p>The one you sign in with here. Use the same account in the app and your plan unlocks on Android and iPhone.</p></details>
+  <details><summary>What happens after 12 months?</summary><p>Your plan simply ends and you're back on Free. Nothing is lost and nothing is charged. After the wedding, Keepsake keeps your memories synced and ad-free for ₹499 a year.</p></details>
+  <details><summary>Refunds?</summary><p>A full refund within 7 days of purchase, no questions asked. See the <a href="/refund-policy/" style="color:var(--invites)">refund policy</a>.</p></details>
+</div>
 </div>
 </main>
-<footer>
-  <a href="/">Home</a><a href="/pricing/">Pricing</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/refund-policy/">Refunds</a><a href="/contact/">Contact</a>
-  <p style="margin-top:.8rem">© 2026 Wedzy. All rights reserved.</p>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="/" class="brand"><span class="brand-mark"><svg class="i"><use href="/assets/icons.svg#heart"/></svg></span>Wedzy</a>
+        <p>The wedding planner that keeps every detail of your big day in one calm place.</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/#features">Features</a></li><li><a href="/#voice">Voice assistant</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="https://play.google.com/store/apps/details?id=com.ajith.wedzy" target="_blank" rel="noopener">Google Play</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="/contact/">Contact</a></li><li><a href="/#partners">Partners &amp; investors</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of use</a></li><li><a href="/refund-policy/">Refunds &amp; cancellation</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Wedzy. All rights reserved.</span><span>Made with love in India by CipherKloud Technologies</span></div>
+  </div>
 </footer>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
