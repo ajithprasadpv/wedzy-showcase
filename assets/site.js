@@ -17,6 +17,22 @@ const io = 'IntersectionObserver' in window
   : null;
 document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
 
+// Fit the phone mockup (and its floating cards) to the window, so the hero never gets cut off
+const stage = document.getElementById('stage');
+if (stage) {
+  const PHONE_H = 640;
+  const fit = () => {
+    const w = window.innerWidth, h = window.innerHeight;
+    let z;
+    if (w > 1060) z = Math.min(0.9, (h - 150) / PHONE_H);   // side by side: fit the height
+    else if (w > 560) z = 0.82;                             // stacked on tablets
+    else z = Math.min(0.86, (w - 40) / 330);                // phones: fit the width
+    stage.style.setProperty('--pz', Math.max(0.6, z).toFixed(3));
+  };
+  fit();
+  window.addEventListener('resize', fit);
+}
+
 // Live countdown in the phone mockup: always ~107 days ahead, like a real couple's Home screen
 const cd = document.getElementById('m-count');
 if (cd) {
