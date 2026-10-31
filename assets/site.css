@@ -438,3 +438,25 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
   .video .play{width:64px;height:64px;font-size:24px}
   .video .cap-txt{left:16px;bottom:12px;font-size:13px}
 }
+
+/* Checkout (pricing page) */
+.account-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 auto 26px;max-width:760px;padding:10px 12px 10px 18px;border-radius:999px;background:#fff;border:1px solid var(--hairline);font-size:14px;color:var(--ink-2)}
+.account-bar b{color:var(--ink);font-weight:600}
+.account-bar .link,.dlg-foot a{background:none;border:0;font:600 14px var(--font);color:var(--invites);cursor:pointer;padding:6px 10px}
+.sheet-dialog{border:0;padding:34px 30px 28px;border-radius:28px;width:min(420px,calc(100vw - 32px));background:var(--bg);color:var(--ink);box-shadow:0 30px 80px -20px rgba(45,40,38,.35);margin:auto}
+.sheet-dialog::backdrop{background:rgba(45,40,38,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sheet-dialog h2{font-size:24px;letter-spacing:-.02em;margin-bottom:6px;padding-right:28px}
+.sheet-dialog .btn{width:100%;margin-top:6px}
+.dlg-close{position:absolute;top:14px;right:14px}
+.dlg-close button{width:36px;height:36px;border-radius:50%;border:0;background:#fff;font-size:22px;line-height:1;color:var(--ink-2);cursor:pointer}
+.dlg-sub{color:var(--ink-2);font-size:15px;margin-bottom:14px}
+.btn-google{background:#fff;color:var(--ink);border-color:var(--hairline)}
+.dlg-or{display:flex;align-items:center;gap:12px;margin:16px 0 10px;color:var(--muted);font-size:13px}
+.dlg-or::before,.dlg-or::after{content:"";flex:1;height:1px;background:var(--hairline)}
+.dlg-form{display:flex;flex-direction:column;gap:10px}
+.dlg-form input{height:48px;border-radius:14px;border:1px solid var(--hairline);background:#fff;padding:0 16px;font:15px var(--font);color:var(--ink)}
+.dlg-form input:focus{outline:2px solid var(--invites-bd);border-color:var(--invites)}
+.dlg-err{min-height:20px;margin-top:10px;font-size:13.5px;color:var(--invites)}
+.dlg-foot{font-size:13px;color:var(--muted);margin-top:4px}
+.dlg-foot a{padding:0;font-size:13px}
+.dlg-ok{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--check-bg);color:var(--check);font-size:28px;font-weight:700;margin-bottom:14px}

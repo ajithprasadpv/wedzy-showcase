@@ -25,6 +25,7 @@
 <main class="page">
 <div class="wrap">
 <div class="page-head reveal in"><span class="icircle f-budget"><svg class="i"><use href="/assets/icons.svg#wallet"/></svg></span><h1>Pay once. Plan in peace.</h1><p class="meta">One-time payments with UPI, cards, netbanking or wallets. Nothing renews automatically.</p></div>
+<div class="account-bar" id="account-bar" hidden></div>
 <div class="plans">
       <div class="plan-card card f-stone reveal">
         <h3>Free</h3>
@@ -45,7 +46,7 @@
           <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>250 voice commands a month</li>
           <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Completely ad-free</li>
         </ul>
-        <a class="btn btn-primary" href="mailto:ajithprasadpv@gmail.com?subject=Wedding%20Pass">Get the Pass</a>
+        <button class="btn btn-primary" data-plan="pass">Get the Pass</button>
       </div>
       <div class="plan-card card f-guests reveal">
         <h3>Wedding Pass Plus</h3>
@@ -55,7 +56,7 @@
           <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>750 voice commands a month</li>
           <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Plan together with family</li>
         </ul>
-        <a class="btn btn-capsule" href="mailto:ajithprasadpv@gmail.com?subject=Wedding%20Pass%20Plus">Get Plus</a>
+        <button class="btn btn-capsule" data-plan="plus">Get Plus</button>
       </div>
       <div class="plan-card card f-gallery reveal">
         <h3>Keepsake</h3>
@@ -66,7 +67,7 @@
           <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Anniversary reminders</li>
           <li><svg class="i"><use href="/assets/icons.svg#check"/></svg>Ad-free, 20 voice commands a month</li>
         </ul>
-        <a class="btn btn-capsule" href="mailto:ajithprasadpv@gmail.com?subject=Keepsake">Ask about Keepsake</a>
+        <button class="btn btn-capsule" data-plan="keepsake">Get Keepsake</button>
       </div>
     </div>
     <div class="pay-row reveal">
@@ -74,8 +75,9 @@
     </div>
 
 <div class="faq" style="margin-top:56px">
-  <details open><summary>When does checkout open?</summary><p>Online checkout is launching very soon. Until then, every feature is free in the app. Want a pass now? Write to <a href="mailto:ajithprasadpv@gmail.com" style="color:var(--invites)">ajithprasadpv@gmail.com</a>.</p></details>
-  <details><summary>Which account gets the plan?</summary><p>The one you sign in with here. Use the same account in the app and your plan unlocks on Android and iPhone.</p></details>
+  <details open><summary>Which account gets the plan?</summary><p>The one you sign in with here. Use the same Google account or email as in the Wedzy app, and your plan unlocks on Android and iPhone the next time you open it.</p></details>
+  <details><summary>I use Sign in with Apple in the app</summary><p>Apple sign-in isn't available on the website yet. Write to <a href="mailto:ajithprasadpv@gmail.com?subject=Wedzy%20plan%20with%20Apple%20sign-in" style="color:var(--invites)">ajithprasadpv@gmail.com</a> and we'll set your plan up for you.</p></details>
+  <details><summary>Can I pay from outside India?</summary><p>Yes. Pay with UPI from an NRE/NRO account, or with an international debit or credit card. Your bank converts the rupee price.</p></details>
   <details><summary>What happens after 12 months?</summary><p>Your plan simply ends and you're back on Free. Nothing is lost and nothing is charged. After the wedding, Keepsake keeps your memories synced and ad-free for ₹499 a year.</p></details>
   <details><summary>Refunds?</summary><p>A full refund within 7 days of purchase, no questions asked. See the <a href="/refund-policy/" style="color:var(--invites)">refund policy</a>.</p></details>
 </div>
@@ -95,6 +97,12 @@
     <div class="foot-bottom"><span>© 2026 Wedzy. All rights reserved.</span><span>Made with love in India by CipherKloud Technologies</span></div>
   </div>
 </footer>
+<dialog class="sheet-dialog" id="pay-dialog" aria-labelledby="pay-title">
+  <form method="dialog" class="dlg-close"><button aria-label="Close">×</button></form>
+  <div id="pay-view"></div>
+</dialog>
 <script src="/assets/site.js" defer></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+<script type="module" src="/assets/pay.js"></script>
 </body>
 </html>
