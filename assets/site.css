@@ -309,7 +309,7 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .plan-card li:first-child{border-top:0;padding-top:0}
 .plan-card .btn{width:100%}
 .pay-row{display:flex;justify-content:center;margin-top:28px}
-.pay-note{max-width:76ch;text-align:center;font-size:14px;color:var(--muted)}
+.pay-note{max-width:90ch;text-align:center;font-size:14px;color:var(--muted)}
 
 /* ── Investors ── */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -467,3 +467,19 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .plan-status ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:14px;color:var(--ink-2)}
 .plan-status li+li{border-top:1px solid color-mix(in srgb,var(--ink) 8%,transparent);padding-top:6px}
 @media (max-width:560px){.account-card{padding:28px 20px 22px}}
+
+/* Signed-in person: Google photo (or initials), name, sign-in method */
+.user-badge{display:flex;align-items:center;gap:12px;margin:2px 0 16px;min-width:0}
+.user-badge>div{display:flex;flex-direction:column;min-width:0}
+.user-badge b{font-size:15.5px;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+.user-badge .who{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.avatar{width:44px;height:44px;border-radius:50%;flex:none;object-fit:cover;display:grid;place-items:center;background:var(--invites-bg);color:var(--invites);font-weight:700;font-size:16px;border:1px solid var(--hairline)}
+.via{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.via img{display:block}
+.user-badge.compact{display:inline-flex;margin:0;gap:8px}
+.user-badge.compact .avatar{width:28px;height:28px;font-size:12px}
+.user-badge.compact b{font-size:14px}
+.user-badge.compact .via{font-size:12px;color:var(--muted);padding:2px 8px;border-radius:999px;background:var(--stone-bg)}
+.bar-who{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}
+.bar-plan{font-size:14px;color:var(--ink-2)}
+@media (max-width:560px){.account-bar{border-radius:20px;padding:12px 14px}}

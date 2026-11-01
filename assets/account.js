@@ -1,5 +1,5 @@
 // Account page: sign in and see the current Wedzy plan (GET /v1/entitlement).
-import { auth, api, esc, longDate, PLAN_NAMES, renderSignIn, onAuthStateChanged, signOut } from "./auth.js";
+import { auth, api, esc, longDate, PLAN_NAMES, renderSignIn, userBadge, onAuthStateChanged, signOut } from "./auth.js";
 
 const view = document.getElementById("account-view");
 const DAY = 24 * 60 * 60 * 1000;
@@ -10,7 +10,7 @@ function signedOutView() {
 
 function loadingView(user) {
   view.innerHTML = `<h2 id="pay-title">Your plan</h2>
-    <p class="dlg-sub">Signed in as <b>${esc(user.email || user.displayName || "you")}</b></p>
+    ${userBadge(user)}
     <p class="dlg-sub">Checking your plan…</p>`;
 }
 
@@ -24,7 +24,7 @@ function planView(user, ent) {
   ];
   view.innerHTML = `
     <h2 id="pay-title">Your plan</h2>
-    <p class="dlg-sub">Signed in as <b>${esc(user.email || user.displayName || "you")}</b></p>
+    ${userBadge(user)}
     <div class="plan-status ${paid ? "active" : ""}">
       <span class="plan-label">Current plan</span>
       <b class="plan-name">${esc(PLAN_NAMES[ent.plan] ?? ent.plan)}</b>
@@ -43,7 +43,7 @@ function planView(user, ent) {
 
 function errorView(user, message) {
   view.innerHTML = `<h2 id="pay-title">Your plan</h2>
-    <p class="dlg-sub">Signed in as <b>${esc(user.email || user.displayName || "you")}</b></p>
+    ${userBadge(user)}
     <p class="dlg-err" role="alert">Couldn't load your plan. ${esc(message)}</p>
     <button class="btn btn-dark" id="retry">Try again</button>
     <p class="dlg-foot"><button class="link" id="sign-out">Sign out</button></p>`;

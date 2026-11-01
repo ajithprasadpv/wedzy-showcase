@@ -25,6 +25,44 @@ export const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt
 export const longDate = (iso) =>
   new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 
+const GOOGLE_G = "https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg";
+
+function initials(user) {
+  const src = (user.displayName || user.email || "?").trim();
+  const words = src.split(/[\s@._-]+/).filter(Boolean);
+  return ((words[0]?.[0] ?? "?") + (user.displayName ? words[1]?.[0] ?? "" : "")).toUpperCase();
+}
+
+// A profile photo that fails to load (expired link, blocked) falls back to initials.
+document.addEventListener(
+  "error",
+  (e) => {
+    const img = e.target;
+    if (!(img instanceof HTMLImageElement) || !img.classList.contains("avatar")) return;
+    const span = document.createElement("span");
+    span.className = "avatar";
+    span.textContent = img.dataset.initials || "?";
+    img.replaceWith(span);
+  },
+  true,
+);
+
+/** The signed-in person: Google profile photo (or initials), name, email, and how they signed in. */
+export function userBadge(user, { compact = false } = {}) {
+  const google = (user.providerData ?? []).some((p) => p.providerId === "google.com");
+  const name = user.displayName || user.email || "Signed in";
+  const avatar = user.photoURL
+    ? `<img class="avatar" src="${esc(user.photoURL)}" alt="" referrerpolicy="no-referrer" data-initials="${esc(initials(user))}"/>`
+    : `<span class="avatar">${esc(initials(user))}</span>`;
+  const via = google
+    ? `<span class="via"><img src="${GOOGLE_G}" alt="" width="12" height="12"/>Google</span>`
+    : `<span class="via">Email</span>`;
+  if (compact) return `<span class="user-badge compact">${avatar}<b>${esc(name)}</b>${via}</span>`;
+  return `<div class="user-badge">${avatar}<div><b>${esc(name)}</b><span class="who">${
+    user.displayName && user.email ? `${esc(user.email)} · ` : ""
+  }${via}</span></div></div>`;
+}
+
 export async function api(path, body) {
   const token = await auth.currentUser.getIdToken();
   const res = await fetch(API + path, {

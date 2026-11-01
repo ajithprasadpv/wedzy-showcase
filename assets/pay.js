@@ -1,6 +1,6 @@
 // Pricing page checkout: sign in with the same Firebase account as the app, pay with Razorpay Checkout, and the
 // Worker grants the plan (CONTRACT.md § Payments and plans in Wedzy-backend).
-import { auth, api, esc, longDate, PLAN_NAMES, renderSignIn, onAuthStateChanged, signOut } from "./auth.js";
+import { auth, api, esc, longDate, PLAN_NAMES, renderSignIn, userBadge, onAuthStateChanged, signOut } from "./auth.js";
 
 const RANK = { free: 0, keepsake: 1, pass: 2, plus: 3 };
 
@@ -115,8 +115,8 @@ function render() {
   } else {
     const active = entitlement && entitlement.plan !== "free";
     bar.hidden = false;
-    bar.innerHTML = `<span>Signed in as <b>${esc(user.email || user.displayName || "you")}</b>${
-      active ? ` · <b>${esc(PLAN_NAMES[entitlement.plan])}</b> until ${esc(longDate(entitlement.expiresAt))}` : ""
+    bar.innerHTML = `<span class="bar-who">${userBadge(user, { compact: true })}${
+      active ? `<span class="bar-plan"><b>${esc(PLAN_NAMES[entitlement.plan])}</b> until ${esc(longDate(entitlement.expiresAt))}</span>` : ""
     }</span><button class="link" id="sign-out">Sign out</button>`;
     bar.querySelector("#sign-out").onclick = () => signOut(auth);
   }
