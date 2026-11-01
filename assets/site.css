@@ -308,7 +308,8 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .plan-card li{padding:9px 0;border-top:1px solid var(--hairline)}
 .plan-card li:first-child{border-top:0;padding-top:0}
 .plan-card .btn{width:100%}
-.pay-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
+.pay-row{display:flex;justify-content:center;margin-top:28px}
+.pay-note{max-width:76ch;text-align:center;font-size:14px;color:var(--muted)}
 
 /* ── Investors ── */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
