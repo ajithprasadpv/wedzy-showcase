@@ -460,3 +460,19 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .dlg-foot{font-size:13px;color:var(--muted);margin-top:4px}
 .dlg-foot a{padding:0;font-size:13px}
 .dlg-ok{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--check-bg);color:var(--check);font-size:28px;font-weight:700;margin-bottom:14px}
+
+/* Account page */
+.account-card{max-width:440px;margin:0 auto;padding:34px 30px 28px;border-radius:28px;color:var(--ink)}
+.account-card h2{font-size:24px;letter-spacing:-.02em;margin-bottom:6px}
+.account-card .btn{width:100%;margin-top:6px}
+.account-card .dlg-sub b{color:var(--ink);font-weight:600;overflow-wrap:anywhere}
+.dlg-foot .link{background:none;border:0;font:600 13px var(--font);color:var(--invites);cursor:pointer;padding:0 0 0 4px}
+.plan-status{display:flex;flex-direction:column;gap:4px;margin:4px 0 16px;padding:18px 20px;border-radius:20px;background:var(--stone-bg);border:1px solid var(--stone-bd)}
+.plan-status.active{background:var(--invites-bg);border-color:var(--invites-bd)}
+.plan-label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.plan-name{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.plan-status.active .plan-name{color:var(--invites)}
+.plan-until{font-size:14px;color:var(--ink-2)}
+.plan-status ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:14px;color:var(--ink-2)}
+.plan-status li::before{content:"✓";margin-right:8px;color:var(--check);font-weight:700}
+@media (max-width:560px){.account-card{padding:28px 20px 22px}}
