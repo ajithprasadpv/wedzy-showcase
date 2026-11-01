@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Get Wedzy</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <script>
+    // Ad landing link: sends each visitor to the right store, keeping UTM tags for attribution.
+    (function () {
+      var IOS_LIVE = false; // flip to true once the App Store listing is public
+      var qs = location.search.replace(/^\?/, '');
+      var ua = navigator.userAgent || '';
+      var isAndroid = /Android/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var dest;
+      if (isAndroid) {
+        // Play Store accepts a URL-encoded "referrer" for install attribution.
+        dest = 'https://play.google.com/store/apps/details?id=com.ajith.wedzy' + (qs ? '&referrer=' + encodeURIComponent(qs) : '');
+      } else if (isIOS && IOS_LIVE) {
+        dest = 'https://apps.apple.com/in/app/id6829027656';
+      } else {
+        dest = '/' + (qs ? '?' + qs : '');
+      }
+      location.replace(dest);
+    })();
+  </script>
+</head>
+<body style="font-family:-apple-system,Inter,sans-serif;background:#FAF7F5;color:#2D2826;display:grid;place-items:center;min-height:100vh;margin:0">
+  <p>Opening Wedzy… <a href="/" style="color:#E84A6F">Continue</a></p>
+</body>
+</html>
