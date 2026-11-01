@@ -55,8 +55,7 @@ img{max-width:100%;display:block}
 
 /* ── Floating nav pill ── */
 .nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;width:min(1100px,100% - 24px);height:58px;border-radius:999px;display:flex;align-items:center;gap:8px;padding:0 10px 0 22px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.02em}
-.brand-mark{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--hero);color:#fff;font-size:16px;box-shadow:0 4px 12px rgba(255,107,138,.35)}
+.brand{display:flex;align-items:center;font-weight:800;font-size:21px;letter-spacing:-.045em;color:var(--ink)}
 .nav-links{display:flex;gap:4px;margin-left:auto;list-style:none}
 .nav-links a{display:block;padding:9px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink-2);transition:background .2s,color .2s}
 .nav-links a:hover,.nav-links a[aria-current]{background:var(--invites-bg);color:var(--invites)}
@@ -82,10 +81,10 @@ img{max-width:100%;display:block}
 .store-btn b{display:block;font-size:15px;line-height:1.15}
 .store-btn .i{font-size:22px}
 .store-btn span{text-align:left}
+.store-btn:not(:has(.i)){padding:0 22px}
 
 /* ── Pills, capsules, cards ── */
 .pill{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;font-size:13px;font-weight:600;background:var(--f-bg,var(--invites-bg));color:var(--f,var(--invites));border:1px solid var(--f-bd,var(--invites-bd))}
-.pill .i{font-size:13px;stroke-width:2.6}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px 0 6px;border-radius:999px;font-size:13px;font-weight:600;color:var(--ink-2)}
 .eyebrow .dot{height:22px;padding:0 7px;border-radius:999px;background:var(--badge);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #fff}
 .card{background:var(--surface);border-radius:var(--r-card);box-shadow:var(--card-shadow)}
@@ -168,16 +167,10 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 /* floating cards beside the phone */
 .float{position:absolute;z-index:6;padding:11px 16px 11px 11px;border-radius:20px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;white-space:nowrap;animation:bob 6s ease-in-out infinite}
 .float small{display:block;font-weight:500;color:var(--muted);font-size:11.5px}
-.float .icircle{--s:36px}
 .float.a{top:96px;right:calc(100% - 16px)}
 .float.b{top:206px;left:calc(100% - 16px);animation-delay:-2s}
 .float.c{bottom:118px;right:calc(100% - 16px);animation-delay:-4s}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-
-/* ── Feature capsule strip ── */
-.strip{padding:30px 0 10px}
-.strip-card{padding:34px 30px;border-radius:32px}
-.strip-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:22px 12px}
 
 /* ── Feature posters: a pastel panel per feature, real app UI rising from the bottom edge ── */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
@@ -290,9 +283,9 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .plan{padding:16px;border-radius:22px;display:flex;flex-direction:column;gap:8px}
 .plan .row-i{background:var(--bg)}
 .plan .apply{display:flex;gap:8px;justify-content:flex-end;margin-top:4px}
-.ticks{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-.ticks li{list-style:none;display:flex;gap:10px;align-items:flex-start;color:var(--ink-2);font-size:16px}
-.ticks .icircle{--s:26px;font-size:12px;margin-top:1px}
+.ticks{display:flex;flex-direction:column;margin-top:24px}
+.ticks li{list-style:none;color:var(--ink-2);font-size:16px;padding:11px 0;border-top:1px solid var(--hairline)}
+.ticks li:first-child{border-top:0;padding-top:0}
 
 /* ── Video ── */
 .video{position:relative;display:block;border-radius:32px;overflow:hidden;aspect-ratio:16/9;box-shadow:0 30px 70px -30px rgba(45,40,38,.45)}
@@ -311,16 +304,16 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .price{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px}
 .price b{font-size:40px;letter-spacing:-.04em}
 .price span{color:var(--muted);font-size:14px;white-space:nowrap}
-.plan-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2);flex:1}
-.plan-card li{display:flex;gap:9px;align-items:flex-start}
-.plan-card li .i{color:var(--f);font-size:16px;margin-top:3px;stroke-width:2.6}
+.plan-card ul{list-style:none;display:flex;flex-direction:column;gap:0;font-size:14.5px;color:var(--ink-2);flex:1}
+.plan-card li{padding:9px 0;border-top:1px solid var(--hairline)}
+.plan-card li:first-child{border-top:0;padding-top:0}
 .plan-card .btn{width:100%}
 .pay-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
 
 /* ── Investors ── */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .stat{padding:24px;border-radius:24px}
-.stat b{display:block;font-size:38px;letter-spacing:-.04em;margin:12px 0 2px}
+.stat b{display:block;font-size:38px;letter-spacing:-.04em;margin:0 0 2px}
 .stat span{color:var(--ink-2);font-size:14px}
 .road{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
 .road .card{padding:24px;display:flex;flex-direction:column;gap:10px}
@@ -392,8 +385,7 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
   .hero-copy{align-items:center}
   .hero-copy .lead{margin-inline:auto}
   .hero-ctas,.hero-pills{justify-content:center}
-  .strip-grid{grid-template-columns:repeat(4,1fr)}
-  .plans{grid-template-columns:repeat(2,1fr)}
+    .plans{grid-template-columns:repeat(2,1fr)}
   .voice{grid-template-columns:1fr;padding:40px}
   .stats,.road{grid-template-columns:repeat(2,1fr)}
   .span-2{grid-column:span 3}
@@ -420,9 +412,7 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 @media (max-width:560px){
   .float{display:none}
   .hero{padding-top:110px}
-  .strip-card{padding:26px 16px}
-  .strip-grid{grid-template-columns:repeat(4,1fr);gap:18px 6px}
-  .capsule{font-size:12px}
+      .capsule{font-size:12px}
   .capsule .cap{height:52px;font-size:21px}
   .plans,.stats,.road{grid-template-columns:1fr}
   .voice{padding:28px 20px;border-radius:28px}
@@ -474,5 +464,5 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .plan-status.active .plan-name{color:var(--invites)}
 .plan-until{font-size:14px;color:var(--ink-2)}
 .plan-status ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:14px;color:var(--ink-2)}
-.plan-status li::before{content:"✓";margin-right:8px;color:var(--check);font-weight:700}
+.plan-status li+li{border-top:1px solid color-mix(in srgb,var(--ink) 8%,transparent);padding-top:6px}
 @media (max-width:560px){.account-card{padding:28px 20px 22px}}
