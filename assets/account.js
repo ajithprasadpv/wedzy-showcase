@@ -18,7 +18,7 @@ function planView(user, ent) {
   const paid = ent.plan !== "free" && ent.expiresAt;
   const daysLeft = paid ? Math.max(0, Math.ceil((new Date(ent.expiresAt) - Date.now()) / DAY)) : 0;
   const perks = [
-    `${esc(ent.voiceLimit)} voice commands a month`,
+    `${esc(ent.voiceLimit)} AI assistant requests a month`,
     ent.adFree ? "Ad-free" : "Shows ads",
     ...(ent.family ? ["Plan together with family"] : []),
   ];
