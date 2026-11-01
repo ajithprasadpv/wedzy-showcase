@@ -316,8 +316,16 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
 .stat{padding:24px;border-radius:24px}
 .stat b{display:block;font-size:38px;letter-spacing:-.04em;margin:0 0 2px}
 .stat span{color:var(--ink-2);font-size:14px}
-.road{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
-.road .card{padding:24px;display:flex;flex-direction:column;gap:10px}
+/* Roadmap: one timeline. Solid where it's shipped, pink where we are, dashed ahead */
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;list-style:none}
+.road li{position:relative;padding:22px 28px 0 0;border-top:2px dashed var(--hairline);display:flex;flex-direction:column;gap:8px}
+.road li::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid #CFC6C1}
+.road li.done{border-top:2px solid var(--ink)}
+.road li.done::before{background:var(--ink);border-color:var(--ink)}
+.road li.now{border-top:2px solid var(--invites)}
+.road li.now::before{background:var(--invites);border-color:var(--invites);box-shadow:0 0 0 4px var(--invites-bg)}
+.road-step{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.road li.now .road-step{color:var(--invites)}
 .road h3{font-size:18px}
 .road p{font-size:14px;color:var(--ink-2)}
 
@@ -389,6 +397,7 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
     .plans{grid-template-columns:repeat(2,1fr)}
   .voice{grid-template-columns:1fr;padding:40px}
   .stats,.road{grid-template-columns:repeat(2,1fr)}
+  .road{gap:34px 0}
   .span-2{grid-column:span 3}
   .span-4{grid-column:span 6}
 }
@@ -416,6 +425,11 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.025em;line-height:1.08
       .capsule{font-size:12px}
   .capsule .cap{height:52px;font-size:21px}
   .plans,.stats,.road{grid-template-columns:1fr}
+  .road{gap:0;margin-left:5px}
+  .road li,.road li.done,.road li.now{border-top:0;border-left:2px dashed var(--hairline);padding:0 0 26px 22px}
+  .road li.done{border-left:2px solid var(--ink)}
+  .road li.now{border-left:2px solid var(--invites)}
+  .road li::before{top:2px;left:-6px}
   .voice{padding:28px 20px;border-radius:28px}
   .cta{padding:56px 22px;border-radius:30px}
   .foot-grid{grid-template-columns:1fr}
