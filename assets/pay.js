@@ -144,10 +144,26 @@ for (const b of buttons) {
 
 dialog.addEventListener("close", () => (pendingPlan = null));
 
+// /pricing?plan=pass (the "free voice limit reached" email): go straight to sign-in and checkout for that plan.
+const linkedPlan = new URLSearchParams(location.search).get("plan");
+let firstAuthState = true;
+if (buttons.some((b) => b.dataset.plan === linkedPlan)) {
+  pendingPlan = linkedPlan;
+  const url = new URL(location.href);
+  url.searchParams.delete("plan"); // a refresh shouldn't reopen checkout
+  history.replaceState(null, "", url);
+  buttons.find((b) => b.dataset.plan === linkedPlan)?.scrollIntoView({ block: "center" });
+}
+
 onAuthStateChanged(auth, async (user) => {
   entitlement = null;
   render();
-  if (!user) return;
+  const first = firstAuthState;
+  firstAuthState = false;
+  if (!user) {
+    if (first && pendingPlan) signInView();
+    return;
+  }
   const plan = pendingPlan;
   if (plan) {
     pendingPlan = null;
